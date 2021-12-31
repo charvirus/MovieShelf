@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!doctype html>
 <html>
 <head>
@@ -22,7 +23,7 @@
 <div id="grid">
     <header id="subheader1"></header>
     <header id="mainheader">
-        <c:import url="top.jsp"></c:import>
+        <c:import url="header.jsp"></c:import>
     </header>
     <header id="subheader2"></header>
     <nav></nav>
