@@ -31,6 +31,11 @@ public class UserController {
         return service.getUsers();
     }
 
+    @GetMapping("/user/getUserByID/{id}")
+    public List<User> getUserByID(@PathVariable String id){
+        return service.getUserById(id);
+    }
+
     // 3.Update
     @PutMapping("/user/update/{code}")
     public User updateUser(@PathVariable int code,@RequestBody UserRequestDTO userRequestDto){

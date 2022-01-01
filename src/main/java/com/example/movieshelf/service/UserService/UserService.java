@@ -34,7 +34,9 @@ public class UserService {
         return repo.findAll();
     }
 
-
+    public List<User> getUserById(String id){
+        return repo.findAllByUser_id(id);
+    }
 
     // 3.Update
     @Transactional // 기존의 테이블에 쿼리가 일어나야함을 알려줌
