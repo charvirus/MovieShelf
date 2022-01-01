@@ -20,13 +20,15 @@
     <header id="subheader2"></header>
     <nav></nav>
     <main>
-        <div id="ad">
-            <a href="https://thegameawards.com/">
-                <section id="ad_banner">
-                    <article id="adbanner">배너</article>
-                </section>
-            </a>
-        </div>
+        <section>
+            <form method="post" action="loginPro">
+                <article id="idpws">
+                    <span>ID&#9;<input type="text" name="id" required></span>
+                    <span>PW&#9;<input type="password" name="pw" required></span>
+                    <input id="submit" type="submit" value="로그인">
+                </article>
+            </form>
+        </section>
     </main>
     <aside></aside>
     <footer id="subfooter1"></footer>
