@@ -24,6 +24,8 @@ public class User {
 
     @Column
     private Timestamp user_regdate;
+    private int user_resign;
+    private Timestamp user_resigndate;
 
     public User(UserRequestDTO dto) {
         this.user_no = dto.getUser_no();
@@ -34,10 +36,12 @@ public class User {
         this.user_regdate = dto.getUser_regdate();
     }
 
-    public void update(UserRequestDTO userRequestDTO){
+    public void update(UserRequestDTO userRequestDTO) {
         this.user_pw = userRequestDTO.getUser_pw();
         this.user_nickname = userRequestDTO.getUser_nickname();
         this.user_name = userRequestDTO.getUser_name();
+        this.user_resign = userRequestDTO.getUser_resign();
+        this.user_resigndate = userRequestDTO.getUser_resigndate();
     }
 
 }

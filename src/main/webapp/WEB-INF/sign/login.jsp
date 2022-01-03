@@ -9,13 +9,13 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Movie Shelf</title>
 </head>
 <body>
 <div id="grid">
     <header id="subheader1"></header>
     <header id="mainheader">
-        <c:import url="header.jsp"></c:import>
+        <c:import url="../header.jsp"></c:import>
     </header>
     <header id="subheader2"></header>
     <nav></nav>
@@ -32,8 +32,16 @@
     </main>
     <aside></aside>
     <footer id="subfooter1"></footer>
-    <footer id="mainfooter"><c:import url="footer.jsp"></c:import></footer>
+    <footer id="mainfooter"><c:import url="../footer.jsp"></c:import></footer>
     <footer id="subfooter2"></footer>
 </div>
+<c:set var="logError" value="${sessionScope.logError}"></c:set>
+<c:choose>
+    <c:when test="${logError == 1}">
+        <script>
+            alert("ID, 비밀번호가 틀리거나 존재하지 않는 회원입니다.");
+        </script>
+    </c:when>
+</c:choose>
 </body>
 </html>

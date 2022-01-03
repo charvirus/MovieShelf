@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -18,8 +20,17 @@ public class UserService {
     // CRUD
     // 1.Create
     public User addUser(UserRequestDTO userRequestDto) {
-        User user = new User(userRequestDto);
-        return repo.save(user);
+        User checkUser = getUserById(userRequestDto.getUser_id());
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        userRequestDto.setUser_regdate(timestamp);
+
+       if (checkUser != null) {
+            return null;
+        } else {
+            User user = new User(userRequestDto);
+
+            return repo.save(user);
+        }
     }
 
     // 2.Read
@@ -34,14 +45,14 @@ public class UserService {
         return repo.findAll();
     }
 
-    public User getUserById(String id){
-
+    public User getUserById(String id) {
         List<User> result = repo.findAllByUser_id(id);
-        if(result.size() != 0){
+        if (result.size() != 0) {
             return result.get(0);
         }
         return null;
     }
+
 
     // 3.Update
     @Transactional // 기존의 테이블에 쿼리가 일어나야함을 알려줌

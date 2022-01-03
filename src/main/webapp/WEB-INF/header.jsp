@@ -13,7 +13,7 @@
 </head>
 <body>
 <main id="headerMain">
-
+    <a href="/">메인</a>
 
     <ul id="headerMenu1">
         <li><a href="service?command=academy">아카데미 작품상</a></li>
@@ -23,9 +23,10 @@
     </ul>
     <ul id="headerMenu2">
         <c:set var="ses" value="${sessionScope.log}"/>
+        <c:set var="nickname" value="${sessionScope.nickname}"></c:set>
         <c:choose>
             <c:when test="${ses != null}">
-                <h3><c:out value="${sessionScope.nickname}"></c:out></h3>
+                <h3>${nickname}</h3>
                 <button onclick="location.href = 'logout'">로그아웃</button>
             </c:when>
             <c:otherwise>
