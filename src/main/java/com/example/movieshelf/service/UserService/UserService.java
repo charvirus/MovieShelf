@@ -34,8 +34,13 @@ public class UserService {
         return repo.findAll();
     }
 
-    public List<User> getUserById(String id){
-        return repo.findAllByUser_id(id);
+    public User getUserById(String id){
+
+        List<User> result = repo.findAllByUser_id(id);
+        if(result.size() != 0){
+            return result.get(0);
+        }
+        return null;
     }
 
     // 3.Update

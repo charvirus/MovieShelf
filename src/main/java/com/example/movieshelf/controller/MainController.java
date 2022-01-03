@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -30,15 +29,24 @@ public class MainController {
     public String checkLogin(HttpServletRequest request){
         String id = request.getParameter("id");
         String pw = request.getParameter("pw");
-
-       List<User> userList = service.getUserById(id);
-
-        if(userList.get(0).getUser_id().equals(id)&&userList.get(0).getUser_pw().equals(pw)){
+        User user = service.getUserById(id);
+        if(user.getUser_id().equals(id)&&user.getUser_pw().equals(pw)){
             HttpSession session = request.getSession();
-            session.setAttribute("log",id);
+            session.setAttribute("log",user.getUser_nickname());
+            session.setAttribute("nickname",user.getUser_nickname());
             return "/WEB-INF/main.jsp";
         }else{
             System.out.println("비밀번호 틀림");
+        }
+        return "/WEB-INF/main.jsp";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpServletRequest request){
+        String log = (String) request.getSession().getAttribute("log");
+        if(log != null){
+            HttpSession session = request.getSession();
+            session.invalidate();
         }
         return "/WEB-INF/main.jsp";
     }
