@@ -12,6 +12,7 @@
     <main>
         <section>
             <h2>게시글</h2>
+            <c:set var="log" value="${sessionScope.log}" scope="page"/>
             <c:set var="post" value="${requestScope.post}" scope="page"/>
 
             <table class="boardList" border="1" width="500px">
@@ -32,7 +33,20 @@
                     <td height="500px" colspan="4"><c:out value="${post.talk_content}"/></td>
                 </tr>
             </table>
-            <button onclick="location.href='${pageContext.request.contextPath}/boardUpdateForm/${post.talk_no}'">게시글 수정</button>
+
+            <c:if test="${log != null && !log.user_id.equals(post.user_id)}">
+                <button onclick="location.href='${pageContext.request.contextPath}/board/${post.talk_no}/increaseLike'">
+                    좋아요+1
+                </button>
+            </c:if>
+            <c:if test="${log != null && log.user_id.equals(post.user_id)}">
+                <button onclick="location.href='${pageContext.request.contextPath}/boardUpdateForm/${post.talk_no}'">게시글
+                    수정
+                </button>
+                <button onclick="location.href='${pageContext.request.contextPath}/boardDelete/${post.talk_no}'">게시글
+                    삭제
+                </button>
+            </c:if>
 
         </section>
     </main>

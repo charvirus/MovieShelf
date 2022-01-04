@@ -31,12 +31,12 @@ public class TalkController {
         return service.getTalks();
     }
 
-    @PutMapping("/talk/update/{code}")
+    @PutMapping("/talk/update/{talk_no}")
     public Talk updateTalk(@PathVariable int talk_no, @RequestBody TalkRequestDTO talkRequestDTO){
         return service.updateTalk(talk_no, talkRequestDTO);
     }
 
-    @DeleteMapping("/talk/delete/{code}")
+    @DeleteMapping("/talk/delete/{talk_no}")
     public int deleteTalk(@PathVariable int talk_no){
         return service.deleteTalk(talk_no);
     }

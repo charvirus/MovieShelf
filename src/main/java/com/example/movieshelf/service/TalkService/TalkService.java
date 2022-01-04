@@ -43,4 +43,5 @@ public class TalkService {
         repo.deleteById(talk.getTalk_no());
         return talk.getTalk_no();
     }
+
 }
