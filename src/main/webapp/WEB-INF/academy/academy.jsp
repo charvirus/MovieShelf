@@ -12,6 +12,7 @@
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
     <title>Movie Shelf - Academy</title>
 </head>
 <body>
@@ -113,6 +114,5 @@
     <footer id="subfooter2"></footer>
 </div>
 <script type="text/javascript" src="script/academy/academy.js"></script>
-
 </body>
 </html>

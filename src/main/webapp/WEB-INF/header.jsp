@@ -17,8 +17,8 @@
 
     <ul id="headerMenu1">
         <li><a href="academy">아카데미 작품상</a></li>
-        <li><a href="service?command=boxOffice">극장 상영작 영화</a></li>
-        <li><a href='/boardList'>영화 게시판</a></li>
+        <li><a href="boxOffice">극장 상영작 영화</a></li>
+        <li><a href="boardList">영화 게시판</a></li>
         <li><a href="service?command=myPage">마이페이지</a></li>
     </ul>
     <ul id="headerMenu2">
