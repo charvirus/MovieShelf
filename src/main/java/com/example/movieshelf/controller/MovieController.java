@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -22,11 +21,9 @@ public class MovieController {
         List<Movie> moviesScore = service.getMoviesByScore();
         List<Movie> moviesTime = service.getMoviesByTime();
 
-        HttpSession session = request.getSession();
-
-        session.setAttribute("movieDate",moviesDate);
-        session.setAttribute("movieScore",moviesScore);
-        session.setAttribute("movieTime",moviesTime);
+        request.setAttribute("movieDate",moviesDate);
+        request.setAttribute("movieScore",moviesScore);
+        request.setAttribute("movieTime",moviesTime);
 
         return "academy/academy.jsp";
     }

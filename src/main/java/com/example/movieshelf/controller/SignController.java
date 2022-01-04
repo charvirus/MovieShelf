@@ -43,8 +43,8 @@ public class SignController {
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request) {
-        String log = (String) request.getSession().getAttribute("log");
-        if (log != null) {
+        User user = (User) request.getSession().getAttribute("log");
+        if (user != null) {
             HttpSession session = request.getSession();
             session.invalidate();
         }
