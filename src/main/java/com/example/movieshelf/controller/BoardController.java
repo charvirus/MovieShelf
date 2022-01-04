@@ -33,8 +33,13 @@ public class BoardController {
     }
 
     @GetMapping("/boardWriteForm")
-    public String writeForm(){
-        return "board/boardWrite.jsp";
+    public String writeForm(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("log");
+
+        // 로그인 되어 있을 경우만 들어감
+        if(user != null) return "board/boardWrite.jsp";
+        else return this.boardList(request);
     }
 
     @PostMapping("/boardWrite")
