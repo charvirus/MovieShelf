@@ -25,10 +25,11 @@ public class TalkRequestDTO {
 
     public TalkRequestDTO(String user_id, String talk_password, String talk_title, String talk_content) {
         this.user_id = user_id;
-        this.talk_title = talk_title;
         this.talk_password = talk_password;
+        this.talk_title = talk_title;
         this.talk_content = talk_content;
     }
+
 
     public void setTalk_title(String talk_title) {
         this.talk_title = talk_title;

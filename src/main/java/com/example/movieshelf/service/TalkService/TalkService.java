@@ -19,8 +19,8 @@ public class TalkService {
         return repo.save(talk);
     }
 
-    public Talk getTalk(int code){
-        return repo.findById(code).orElseThrow(
+    public Talk getTalk(int talk_no){
+        return repo.findById(talk_no).orElseThrow(
 
                 ()-> new IllegalArgumentException("존재하지 않는 게시글입니다.")
         );
@@ -31,15 +31,15 @@ public class TalkService {
     }
 
     @Transactional
-    public Talk updateTalk(int code, TalkRequestDTO talkRequestDTO){
-        Talk talk = getTalk(code);
+    public Talk updateTalk(int talk_no, TalkRequestDTO talkRequestDTO){
+        Talk talk = getTalk(talk_no);
         talk.update(talkRequestDTO);
         return talk;
     }
 
     @Transactional
-    public int deleteTalk(int code){
-        Talk talk = getTalk(code);
+    public int deleteTalk(int talk_no){
+        Talk talk = getTalk(talk_no);
         repo.deleteById(talk.getTalk_no());
         return talk.getTalk_no();
     }

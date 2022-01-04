@@ -34,12 +34,14 @@ public class Talk {
         this.talk_content = talkRequestDTO.getTalk_content();
         this.talk_likes = talkRequestDTO.getTalk_likes();
         this.talk_regdate = talkRequestDTO.getTalk_regdate();
-
     }
 
     public void update(TalkRequestDTO talkRequestDTO){
         this.talk_title = talkRequestDTO.getTalk_title();
         this.talk_content = talkRequestDTO.getTalk_content();
-        this.talk_likes = talkRequestDTO.getTalk_likes();
+    }
+
+    public void increaseLike(){
+        this.talk_likes ++;
     }
 }
