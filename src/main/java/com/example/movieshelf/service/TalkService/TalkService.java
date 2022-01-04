@@ -39,9 +39,8 @@ public class TalkService {
 
     @Transactional
     public int deleteTalk(int talk_no){
-        Talk talk = getTalk(talk_no);
-        repo.deleteById(talk.getTalk_no());
-        return talk.getTalk_no();
+        repo.deleteById(talk_no);
+        return talk_no;
     }
 
 }

@@ -14,6 +14,7 @@ import java.util.List;
 @RestController
 public class TalkController {
 
+    // 게시판 RestController
     private final TalkService service;
 
     @PostMapping("/talk/addTalk")

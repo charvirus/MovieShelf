@@ -16,10 +16,10 @@
     <a href="/">메인</a>
 
     <ul id="headerMenu1">
-        <li><a href="academy">아카데미 작품상</a></li>
-        <li><a href="boxOffice">극장 상영작 영화</a></li>
-        <li><a href="boardList">영화 게시판</a></li>
-        <li><a href="service?command=myPage">마이페이지</a></li>
+        <li><a href="/academy">아카데미 작품상</a></li>
+        <li><a href="/boxOffice">극장 상영작 영화</a></li>
+        <li><a href="/boardList">영화 게시판</a></li>
+        <li><a href="/service?command=myPage">마이페이지</a></li>
     </ul>
     <ul id="headerMenu2">
         <c:set var="ses" value="${sessionScope.log}"/>
@@ -29,8 +29,8 @@
                 <button onclick="location.href = 'logout'">로그아웃</button>
             </c:when>
             <c:otherwise>
-                <li id="headerLogin"><a href="login">로그인</a></li>
-                <li id="headerSignUp"><a href="signUp">회원가입</a></li>
+                <li id="headerLogin"><a href="/login">로그인</a></li>
+                <li id="headerSignUp"><a href="/signUp">회원가입</a></li>
             </c:otherwise>
         </c:choose>
 

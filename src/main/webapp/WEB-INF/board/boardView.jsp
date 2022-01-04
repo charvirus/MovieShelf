@@ -14,6 +14,7 @@
             <h2>게시글</h2>
             <c:set var="log" value="${sessionScope.log}" scope="page"/>
             <c:set var="post" value="${requestScope.post}" scope="page"/>
+            <c:set var="comments" value="${requestScope.comments}" scope="page"/>
 
             <table class="boardList" border="1" width="500px">
                 <tr>
@@ -34,11 +35,14 @@
                 </tr>
             </table>
 
+            <%-- 로그인 되어있지만 아이디 다르면 => 좋아요(자기게시물 좋아요 불가)--%>
             <c:if test="${log != null && !log.user_id.equals(post.user_id)}">
                 <button onclick="location.href='${pageContext.request.contextPath}/board/${post.talk_no}/increaseLike'">
                     좋아요+1
                 </button>
+
             </c:if>
+            <%-- 로그인 되어있고 아이디 같으면 => 수정/삭제--%>
             <c:if test="${log != null && log.user_id.equals(post.user_id)}">
                 <button onclick="location.href='${pageContext.request.contextPath}/boardUpdateForm/${post.talk_no}'">게시글
                     수정
@@ -47,7 +51,36 @@
                     삭제
                 </button>
             </c:if>
-
+            <%-- 로그인 되어있으면 => 댓글달기(자기 게시물도 가능)--%>
+            <c:if test="${log != null}">
+                <form action="/board/comment/addComment/${post.talk_no}">
+                    <input type="text" name="comment" id="comment"  placeholder="댓글" required />
+                    <input type="submit" value="댓글달기"/>
+                </form>
+            </c:if>
+            <table class="comments" border="1px">
+            <tr>
+                <td>작성자</td>
+                <td width="200px">댓글</td>
+                <td>+</td>
+                <td>-</td>
+            </tr>
+            <c:forEach var="comment" items="${comments}">
+                <tr>
+                    <td><c:out value="${comment.user_id}"/></td>
+                    <td><c:out value="${comment.comment_content}"/></td>
+                    <c:choose>
+                    <c:when test="${log != null && log.user_id.equals(comment.user_id)}">
+                        <td><button onclick="location.href='/board/${post.talk_no}/updateComment/${comment.comment_id}'">수정</button></td>
+                        <td><button onclick="location.href='/board/comment/deleteComment/${comment.comment_id}'">삭제</button></td>
+                    </c:when>
+                        <c:otherwise>
+                            <td></td><td></td>
+                        </c:otherwise>
+                    </c:choose>
+                </tr>
+            </c:forEach>
+            </table>
         </section>
     </main>
     <aside></aside>
