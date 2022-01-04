@@ -1,7 +1,6 @@
 package com.example.movieshelf.controller;
 
 import com.example.movieshelf.domain.User.User;
-import com.example.movieshelf.domain.User.UserRequestDTO;
 import com.example.movieshelf.service.UserService.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;

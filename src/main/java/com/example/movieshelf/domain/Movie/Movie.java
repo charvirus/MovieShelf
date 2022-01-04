@@ -45,4 +45,5 @@ public class Movie {
         this.movie_score=movieRequestDTO.getMovie_score();
     }
 
+
 }

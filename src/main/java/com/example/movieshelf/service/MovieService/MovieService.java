@@ -30,8 +30,19 @@ public class MovieService {
     }
 
     public List<Movie> getMovies(){
-
         return repo.findAll();
+    }
+
+    public List<Movie> getMoviesByDate(){
+        return repo.findMovieByRecentDate();
+    }
+
+    public List<Movie> getMoviesByScore(){
+        return repo.findMovieByScore();
+    }
+
+    public List<Movie> getMoviesByTime(){
+        return repo.findMovieByTime();
     }
 
     @Transactional
