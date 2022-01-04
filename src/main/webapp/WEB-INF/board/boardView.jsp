@@ -17,11 +17,14 @@
             <table class="boardList" border="1" width="500px">
                 <tr>
                     <td>제목</td>
-                    <td colspan="3"><c:out value="${post.talk_title}"/></td>
-                </tr>
-                <tr>
+                    <td><c:out value="${post.talk_title}"/></td>
                     <td>작성자</td>
                     <td><c:out value="${post.user_id}"/></td>
+                </tr>
+                <tr>
+                    <td>좋아요 수</td>
+                    <td><c:out value="${post.talk_likes}"/></td>
+
                     <td>작성일</td>
                     <td><c:out value="${post.talk_regdate}"/></td>
                 </tr>

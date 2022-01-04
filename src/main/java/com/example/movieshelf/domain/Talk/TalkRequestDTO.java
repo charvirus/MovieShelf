@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
@@ -28,6 +29,8 @@ public class TalkRequestDTO {
         this.talk_password = talk_password;
         this.talk_title = talk_title;
         this.talk_content = talk_content;
+        this.talk_likes = 0;
+        this.talk_regdate = Timestamp.valueOf(LocalDateTime.now());
     }
 
 

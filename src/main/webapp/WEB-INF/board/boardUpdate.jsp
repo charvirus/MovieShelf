@@ -13,18 +13,22 @@
     <main>
         <section>
             <h2>게시글 수정</h2>
-            <c:set var="post" value="${requestScope.post}" scope="request"/>
             <form method="post" action="${pageContext.request.contextPath}/boardUpdate/${post.talk_no}">
+                <input type="hidden">
+                <c:set var="post" value="${requestScope.post}" scope="request"/>
+
                 <table class="boardList" border="1" width="500px">
                     <tr>
                         <td>제목</td>
-                        <td colspan="3">
+                        <td>
                             <input name="title" id="title" type="text" value="${post.talk_title}" required/>
                         </td>
-                    </tr>
-                    <tr>
                         <td>작성자</td>
                         <td><c:out value="${post.user_id}"/></td>
+                    </tr>
+                    <tr>
+                        <td>좋아요 수</td>
+                        <td><c:out value="${post.talk_likes}"/></td>
                         <td>작성일</td>
                         <td><c:out value="${post.talk_regdate}"/></td>
                     </tr>

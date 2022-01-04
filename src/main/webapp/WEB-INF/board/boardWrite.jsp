@@ -12,8 +12,7 @@
     <header id="subheader2"></header>
     <main>
         <section>
-            <h2>게시글 수정</h2>
-            <c:set var="post" value="${requestScope.post}" scope="page"/>
+            <h2>게시글 작성</h2>
             <form method="post" action="${pageContext.request.contextPath}/boardWrite">
                 <table class="boardList" border="1" width="500px">
                     <tr>
@@ -25,7 +24,7 @@
                     <tr>
                         <td height="500px" colspan="4">
                             <textarea height="500px" name="content" id="content" required>
-                                내용
+
                             </textarea>
                         </td>
                     </tr>
