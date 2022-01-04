@@ -21,9 +21,9 @@ public class TalkController {
         return service.addTalk(talkRequestDTO);
     }
 
-    @GetMapping("/talk/getTalk/{code}")
-    public Talk getTalk(@PathVariable int code){
-        return service.getTalk(code);
+    @GetMapping("/talk/getTalk/{talk_no}")
+    public Talk getTalk(@PathVariable int talk_no){
+        return service.getTalk(talk_no);
     }
 
     @GetMapping("/talk/getTalks")
@@ -36,9 +36,8 @@ public class TalkController {
         return service.updateTalk(talk_no, talkRequestDTO);
     }
 
-
     @DeleteMapping("/talk/delete/{code}")
-    public int deleteTalk(@PathVariable int code){
-        return service.deleteTalk(code);
+    public int deleteTalk(@PathVariable int talk_no){
+        return service.deleteTalk(talk_no);
     }
 }

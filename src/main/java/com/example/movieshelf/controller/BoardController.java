@@ -55,4 +55,11 @@ public class BoardController {
         return "board/boardView.jsp";
     }
 
+    @PostMapping("/boardUpdate/{talk_no}")
+    public String deletePost(@PathVariable int talk_no){
+        int delNum = talkController.deleteTalk(talk_no);
+        System.out.println("delNum: " + delNum);
+        return "board/boardList.jsp";
+    }
+
 }
