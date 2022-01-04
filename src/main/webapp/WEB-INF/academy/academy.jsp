@@ -52,7 +52,7 @@
                     <td> 감독 : ${movieDate.get(i).getMovie_director()}<br> 주연 : ${movieDate.get(i).getMovie_mainactor()}</td>
                     <c:if test="${ses != null}">
                         <td><center><button
-                                onclick="location.href=''">나중에 볼 영화 찜하기</button></center></td>
+                                onclick="location.href='/addWishList/${movieDate.get(i).getMovie_no()}'">나중에 볼 영화 찜하기</button></center></td>
                     </c:if>
                 </tr>
                 </c:forEach>
@@ -76,7 +76,7 @@
                         <td> 감독 : ${movieScore.get(i).getMovie_director()}<br> 주연 : ${movieScore.get(i).getMovie_mainactor()}</td>
                         <c:if test="${ses != null}">
                             <td><center><button
-                                    onclick="location.href=''">나중에 볼 영화 찜하기</button></center></td>
+                                    onclick="location.href='/addWishList/${movieScore.get(i).getMovie_no()}'">나중에 볼 영화 찜하기</button></center></td>
                         </c:if>
                     </tr>
                 </c:forEach>
@@ -101,7 +101,7 @@
                         <td> 감독 : ${movieTime.get(i).getMovie_director()}<br>   주연 : ${movieTime.get(i).getMovie_mainactor()}</td>
                         <c:if test="${ses != null}">
                             <td><center><button
-                                    onclick="location.href=''">나중에 볼 영화 찜하기</button></center></td>
+                                    onclick="location.href='/addWishList/${movieTime.get(i).getMovie_no()}'">나중에 볼 영화 찜하기</button></center></td>
                         </c:if>
                     </tr>
                 </c:forEach>

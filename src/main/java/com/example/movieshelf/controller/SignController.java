@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 @RequiredArgsConstructor
 @Controller
 public class SignController {
-    private final MainController mainController;
     private final UserService service;
 
     @GetMapping("/login")
