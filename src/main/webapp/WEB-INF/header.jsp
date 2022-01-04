@@ -23,10 +23,9 @@
     </ul>
     <ul id="headerMenu2">
         <c:set var="ses" value="${sessionScope.log}"/>
-        <c:set var="nickname" value="${sessionScope.nickname}"></c:set>
         <c:choose>
             <c:when test="${ses != null}">
-                <h3>${nickname}</h3>
+                <h3>${ses.getUser_nickname()}</h3>
                 <button onclick="location.href = 'logout'">로그아웃</button>
             </c:when>
             <c:otherwise>

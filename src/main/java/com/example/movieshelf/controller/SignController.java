@@ -33,8 +33,7 @@ public class SignController {
             session.setAttribute("logError", 1);
             return "sign/login.jsp";
         } else if (user.getUser_id().equals(id) && user.getUser_pw().equals(pw)) {
-            session.setAttribute("log", user.getUser_nickname());
-            session.setAttribute("nickname", user.getUser_nickname());
+            session.setAttribute("log", user);
             session.setAttribute("logError", 0);
             return "main.jsp";
         } else {
