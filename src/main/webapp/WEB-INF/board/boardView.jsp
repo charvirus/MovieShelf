@@ -69,10 +69,12 @@
             <c:forEach var="comment" items="${comments}">
                 <tr>
                     <c:choose>
-                        <c:when test="${comment.depth == 0}">
+                        <c:when test="${ comment.depth == 0}">
                             <td><c:out value="${comment.user_id}"/></td>
                             <td><c:out value="${comment.comment_content}"/></td>
+                            <c:if test="${log != null}">
                             <td><button onclick="location.href='/board/comment/addPlusComment/${post.talk_no}/${comment.sort_no}'">대댓글</button></td>
+                            </c:if>
                         </c:when>
                         <c:when test="${comment.depth == 1}">
                             &nbsp;&nbsp;&nbsp;&nbsp;<td>ㄴ<c:out value="${comment.user_id}"/></td>

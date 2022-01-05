@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -35,11 +36,11 @@ public class BoardController {
         return "board/boardList.jsp";
     }
 
-
     @GetMapping("/board/{talk_no}")
     public String post(@PathVariable int talk_no, HttpServletRequest request){
         Talk post = tc.getTalk(talk_no);
-        ArrayList<Comment> comments = cc.getCommentListByTalkNo(talk_no);
+        // sortForSortNo() : 댓글 정렬, 반환
+        ArrayList<Comment> comments = this.sortForSortNo(cc.getCommentListByTalkNo(talk_no));
         request.setAttribute("post", post);
         request.setAttribute("comments", comments);
         return "board/boardView.jsp";
@@ -169,22 +170,84 @@ public class BoardController {
     public String addPlusComment(@PathVariable int talk_no, @PathVariable int sort_no, HttpServletRequest request, HttpServletResponse response) throws IOException{
         HttpSession session = request.getSession(false);
         User user = (User)session.getAttribute("log");
+        Talk post = tc.getTalk(talk_no);
+
         // 게시글 번호, 현재 로그인된 유저 id, 댓글 내용
         // ㄴ 나머지 mysql에서 auto 설정
-
         // 객체 생성(comment 부분 빈칸 저장) => (내용만 입력받아 변경)this.setPlusComment
         CommentRequestDTO dto = new CommentRequestDTO(talk_no, user.getUser_id(), "", sort_no, 1);
         Comment plusComment = cc.addComment( dto );
-
-        System.out.println("plusComment : " + plusComment.getComment_id());
-
-        Talk post = tc.getTalk(talk_no);
         ArrayList<Comment> comments = cc.getCommentListByTalkNo(talk_no);
+        System.out.println("plusComment의 sortNum : " + plusComment.getSort_no());
+
+        // 방금 추가된 객체 빼고 sort_no update (밀어주기)
+        ArrayList<Comment> updateArr = this.pushSortNo(talk_no, plusComment.getSort_no());
+
+        // comments 변경되었기 때문에 다시 get 후 sort
+        ArrayList<Comment> sortedComments = this.sortForSortNo(comments);
 
         request.setAttribute("post", post);
-        request.setAttribute("comments", comments);
+        request.setAttribute("comments", sortedComments);
         request.setAttribute("plusComment", plusComment); // view에 뿌리기 위해 저장
         return "/board/boardView_plusCommentAdd.jsp";
+    }
+
+    // 새로 대댓글 추가시 sortno 뒤로뒤로 => 추가 후 실행
+    private ArrayList<Comment> pushSortNo(int talk_no, int sort_no){
+        ArrayList<Comment> comments = cc.getCommentListByTalkNo(talk_no);
+        ArrayList<Comment> updateArr = new ArrayList<>();
+
+        int i = 0;
+        for(Comment c : comments){
+            if(c.getSort_no() >= sort_no) { // 같거나 큰애들
+                CommentRequestDTO temp = cc.changeDTO(c.getComment_id());
+                temp.setSort_no( temp.getSort_no() + 1 );
+                c.updateSortNo( temp );
+                updateArr.add(c);
+            }
+            i++;
+            // 방금 추가된 애는 넘어가지 않음 (plusComment 이후에 진행되기 때문)
+            if(i == comments.size()-1) break;
+        }
+        // 바뀐 애들만 ArrayList 받아서 객체 바꿔주는 메서드 CommentService
+        cc.updateComments(updateArr);
+        // ㄴ 무조건 직접 Repository에서 객체를 꺼내서 바꿔줘야함
+        // ㄴ key!!! repo에 직접 접근! @Transection 필수
+        return comments;
+    }
+
+    // 댓글, 대댓글 삭제시 sortNo 당겨주기 => 삭제 후 실행
+    private ArrayList<Comment> pullSortNo(int talk_no, int sort_no, int howMany) {
+        ArrayList<Comment> comments = cc.getCommentListByTalkNo(talk_no);
+        ArrayList<Comment> updateArr = new ArrayList<>();
+
+        for(Comment c : comments){
+            if(c.getSort_no() > sort_no) { // 같거나 큰애들
+                CommentRequestDTO temp = cc.changeDTO(c.getComment_id());
+                temp.setSort_no( temp.getSort_no() - howMany );
+                c.updateSortNo( temp );
+                updateArr.add(c);
+            }
+        }
+        // 바뀐 애들만 ArrayList 받아서 객체 바꿔주는 메서드 CommentService
+        cc.updateComments(updateArr);
+        // ㄴ 무조건 직접 Repository에서 객체를 꺼내서 바꿔줘야함
+        // ㄴ key!!! repo에 직접 접근! @Transection 필수
+        return comments;
+    }
+        // sort_no을 통한 정렬 메서드
+    // ㄴ 같지 않으면 끝나버림 => 삽입, 삭제시 인덱스 조절 필수
+    private ArrayList<Comment> sortForSortNo(ArrayList<Comment> comments){
+        ArrayList<Comment> tempArr = new ArrayList<>();
+        int idx = 1;
+        for(int i=0; i<comments.size(); i++){
+            if(comments.get(i).getSort_no() == idx) {
+                tempArr.add(comments.get(i));
+                idx++;
+                i = 0;
+            }
+        }
+        return tempArr;
     }
 
     // 대댓글 등록 메서드
@@ -203,7 +266,7 @@ public class BoardController {
     @GetMapping("/board/{talk_no}/updateComment/{comment_id}")
     public String updateCommentPost(@PathVariable int talk_no, @PathVariable int comment_id, HttpServletRequest request){
         Talk post = tc.getTalk(talk_no);
-        ArrayList<Comment> comments = cc.getCommentListByTalkNo(talk_no);
+        ArrayList<Comment> comments = this.sortForSortNo(cc.getCommentListByTalkNo(talk_no));
         Comment updateComment = cc.getOneComment(comment_id);
         request.setAttribute("post", post);
         request.setAttribute("comments", comments);
@@ -221,10 +284,34 @@ public class BoardController {
 
     @GetMapping("/board/comment/deleteComment/{comment_id}")
     public void deleteComment(@PathVariable int comment_id, HttpServletResponse response) throws IOException{
-        int talk_no = cc.getOneComment(comment_id).getTalk_no();
+        Comment comment = cc.getOneComment(comment_id);
         System.out.println("댓글 삭제 완료!");
-        cc.deleteComment(comment_id);
-        response.sendRedirect("/board/"+talk_no);
+        int howMany = 1;
+        if(comment.getDepth() == 1){
+            cc.deleteComment(comment_id);
+        }
+        else {
+            howMany = this.deleteAllComments(comment.getTalk_no(), comment.getSort_no());
+        }
+        this.pullSortNo(comment.getTalk_no(), comment.getSort_no(), howMany);
+        response.sendRedirect("/board/"+comment.getTalk_no());
+    }
+
+    // 대댓글 같이 삭제하는 메서드
+    private int deleteAllComments(int talk_no, int sort_no){
+        // 삭제 하고 값을 반환해줘
+        ArrayList<Comment> comments = cc.getCommentListByTalkNo(talk_no);
+        ArrayList<Comment> deleteArr = new ArrayList<>();
+
+        for (Comment c : comments) {
+            // 같거나 크고, 다음 0보다 작아야해  (수정수정)
+            if (c.getSort_no() >= sort_no && (c.getSort_no() > sort_no && c.getDepth() == 1)) {
+                deleteArr.add(c);
+            }
+
+
+        }
+        return cc.deleteComments(deleteArr); // 삭제 수 반환
     }
 }
 

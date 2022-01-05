@@ -60,10 +60,36 @@ public class CommentService {
         return comment;
     }
 
+    // ArrayList에 담긴 애들을 업데이트 시켜준다
+    @Transactional
+    public ArrayList<Comment> updateComments(ArrayList<Comment> comments){
+        for(Comment c : comments){
+            Comment existComment = repo.findById(c.getComment_id()).orElseThrow(
+                    () -> new IllegalArgumentException("없는 댓글 입니다")
+            );
+            int sort_no = existComment.updateSortNo( this.changeDTO(c.getComment_id()) );
+            // repo 객체에 직접 접근해야 업데이트 됨...
+            // 어줍잖게 새로운 변수에 넣어서 update 금지
+            System.out.println(">> 정렬중 c_no" + c.getSort_no() + " // sort_no: " + sort_no);
+        }
+        return comments;
+    }
+
     @Transactional
     public int deleteComment(int comment_id){
         repo.deleteById(comment_id);
         return comment_id;
+    }
+
+    // 삭제 목록 받아서 삭제하는 메서드
+    @Transactional
+    public int deleteComments(ArrayList<Comment> comments) {
+        int howMany = 0;
+        for (Comment c : comments) {
+            repo.deleteById(c.getComment_id());
+            howMany++;
+        }
+        return howMany;
     }
 
     @Transactional

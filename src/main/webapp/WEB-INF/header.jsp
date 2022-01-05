@@ -26,7 +26,7 @@
         <c:choose>
             <c:when test="${ses != null}">
                 <h3>${ses.getUser_nickname()}</h3>
-                <button onclick="location.href = 'logout'">로그아웃</button>
+                <button onclick="location.href = '/logout'">로그아웃</button>
             </c:when>
             <c:otherwise>
                 <li id="headerLogin"><a href="/login">로그인</a></li>

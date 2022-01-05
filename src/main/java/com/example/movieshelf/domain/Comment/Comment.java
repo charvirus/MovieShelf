@@ -3,6 +3,7 @@ package com.example.movieshelf.domain.Comment;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -45,8 +46,9 @@ public class Comment {
         this.comment_content = commentRequestDTO.getComment_content();
     }
 
-    public void updateSortNo(CommentRequestDTO commentRequestDTO) {
+    public int updateSortNo(CommentRequestDTO commentRequestDTO) {
         this.sort_no = commentRequestDTO.getSort_no();
+        return sort_no;
     }
 }
 
