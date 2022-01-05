@@ -55,7 +55,12 @@ public class CommentController {
         return service.deleteComment(comment_id);
     }
 
-    // Comment => CommentRequestDTO 바꿔주는 객체
+    @GetMapping("/talk/deleteComment/{talk_no}")
+    public int deleteCommentByTalkNo(@PathVariable int talk_no) {
+        return service.deleteCommentAllByTalkNo(talk_no);
+    }
+
+        // Comment => CommentRequestDTO 바꿔주는 객체
     public CommentRequestDTO changeDTO(int comment_id) {
         return service.changeDTO(comment_id);
     }

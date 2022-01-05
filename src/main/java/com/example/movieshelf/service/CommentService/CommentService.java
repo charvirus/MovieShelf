@@ -65,9 +65,20 @@ public class CommentService {
         return comment_id;
     }
 
+    @Transactional
+    public int deleteCommentAllByTalkNo(int talk_no){
+        ArrayList<Comment> comments = this.getCommentListByTalkNo(talk_no);
+        int delCommentCnt = comments.size();
+        for(Comment c : comments){
+            repo.deleteById(c.getComment_id());
+        }
+        return delCommentCnt;
+    }
+
     // Comment => CommentRequestDTO 바꿔주는 객체
     public CommentRequestDTO changeDTO(int comment_id){
         Comment tmp = getOneComment(comment_id);
         return new CommentRequestDTO(tmp.getComment_id(), tmp.getTalk_no(), tmp.getUser_id(),tmp.getComment_content(), tmp.getComment_date());
     }
+
 }
