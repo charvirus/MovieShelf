@@ -22,6 +22,7 @@ public class CommentService {
     // 게시글에 이용
     public ArrayList<Comment> getCommentListByTalkNo(int talk_no){
         List<Comment> allComment = getCommentList();
+
         ArrayList<Comment> postComment = new ArrayList<Comment>();
         for(Comment com : allComment){
             if(com.getTalk_no() == talk_no){
@@ -78,7 +79,7 @@ public class CommentService {
     // Comment => CommentRequestDTO 바꿔주는 객체
     public CommentRequestDTO changeDTO(int comment_id){
         Comment tmp = getOneComment(comment_id);
-        return new CommentRequestDTO(tmp.getComment_id(), tmp.getTalk_no(), tmp.getUser_id(),tmp.getComment_content(), tmp.getComment_date());
+        return new CommentRequestDTO(tmp.getComment_id(), tmp.getTalk_no(), tmp.getUser_id(),tmp.getComment_content(), tmp.getComment_date(), tmp.getSort_no(), tmp.getDepth());
     }
 
 }

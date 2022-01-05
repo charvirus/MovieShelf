@@ -59,10 +59,11 @@
           <input type="submit" value="댓글달기"/>
         </form>
       </c:if>
-      <table class="comments" border="1px">
+      <table class="comments">
         <tr>
           <td>작성자</td>
           <td width="200px">댓글</td>
+          <td>@</td>
           <td>+</td>
           <td>-</td>
         </tr>
@@ -74,13 +75,16 @@
             <c:when test="${ log != null && log.user_id.equals(comment.user_id) && updateComment.comment_id == comment.comment_id }">
               <form action="/board/comment/updateComment/${comment.comment_id}">
                 <td><input type="text" name="reComment" id="reComment" value="${comment.comment_content}" required/></td>
+                <td></td>
                 <td><input type="submit" value="수정"/></td>
                 <td></td>
               </form>
             </c:when>
               <c:otherwise>
                 <td><c:out value="${comment.comment_content}"/></td>
-                <td></td><td></td>
+                <td></td>
+                <td></td>
+                <td></td>
               </c:otherwise>
           </c:choose>
         </tr>

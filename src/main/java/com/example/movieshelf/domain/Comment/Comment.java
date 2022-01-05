@@ -20,7 +20,7 @@ public class Comment {
 
     @NonNull
     @Column
-    private int talk_no;
+    private int talk_no, sort_no, depth;
 
     @NonNull
     @Column
@@ -36,11 +36,17 @@ public class Comment {
         this.user_id = commentRequestDTO.getUser_id();
         this.comment_content = commentRequestDTO.getComment_content();
         this.comment_date = commentRequestDTO.getComment_date();
+        this.sort_no = commentRequestDTO.getSort_no();
+        this.depth = commentRequestDTO.getDepth();
     }
 
     public void update(CommentRequestDTO commentRequestDTO){
         // changeDTO 메서드 => setComment_content
         this.comment_content = commentRequestDTO.getComment_content();
+    }
+
+    public void updateSortNo(CommentRequestDTO commentRequestDTO) {
+        this.sort_no = commentRequestDTO.getSort_no();
     }
 }
 

@@ -58,17 +58,28 @@
                     <input type="submit" value="댓글달기"/>
                 </form>
             </c:if>
-            <table class="comments" border="1px">
+            <table class="comments" >
             <tr>
                 <td>작성자</td>
                 <td width="200px">댓글</td>
+                <td>@</td>
                 <td>+</td>
                 <td>-</td>
             </tr>
             <c:forEach var="comment" items="${comments}">
                 <tr>
-                    <td><c:out value="${comment.user_id}"/></td>
-                    <td><c:out value="${comment.comment_content}"/></td>
+                    <c:choose>
+                        <c:when test="${comment.depth == 0}">
+                            <td><c:out value="${comment.user_id}"/></td>
+                            <td><c:out value="${comment.comment_content}"/></td>
+                            <td><button onclick="location.href='/board/comment/addPlusComment/${post.talk_no}/${comment.sort_no}'">대댓글</button></td>
+                        </c:when>
+                        <c:when test="${comment.depth == 1}">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<td>ㄴ<c:out value="${comment.user_id}"/></td>
+                            <td><c:out value="${comment.comment_content}"/></td>
+                            <td></td>
+                        </c:when>
+                    </c:choose>
                     <c:choose>
                     <c:when test="${log != null && log.user_id.equals(comment.user_id)}">
                         <td><button onclick="location.href='/board/${post.talk_no}/updateComment/${comment.comment_id}'">수정</button></td>

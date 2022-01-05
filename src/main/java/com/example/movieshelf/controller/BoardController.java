@@ -152,6 +152,7 @@ public class BoardController {
     }
 
     // ====== 코멘트 매핑 ======
+    // 댓글 추가 메서드
     @GetMapping("/board/comment/addComment/{talk_no}")
     public void addComment(@PathVariable int talk_no, HttpServletRequest request, HttpServletResponse response) throws IOException{
         HttpSession session = request.getSession(false);
@@ -159,7 +160,43 @@ public class BoardController {
         String comment = request.getParameter("comment");
         // 게시글 번호, 현재 로그인된 유저 id, 댓글 내용
         // ㄴ 나머지 mysql에서 auto 설정
-        cc.addComment(new CommentRequestDTO(talk_no, user.getUser_id(), comment));
+        cc.addComment(new CommentRequestDTO(talk_no, user.getUser_id(), comment, -1, 0));
+        response.sendRedirect("/board/"+talk_no);
+    }
+
+    // 대댓글 추가 및 이동 메서드 => 부모 댓글의 번호를 sort_no로 가지고 들어온다
+    @GetMapping("/board/comment/addPlusComment/{talk_no}/{sort_no}")
+    public String addPlusComment(@PathVariable int talk_no, @PathVariable int sort_no, HttpServletRequest request, HttpServletResponse response) throws IOException{
+        HttpSession session = request.getSession(false);
+        User user = (User)session.getAttribute("log");
+        // 게시글 번호, 현재 로그인된 유저 id, 댓글 내용
+        // ㄴ 나머지 mysql에서 auto 설정
+
+        // 객체 생성(comment 부분 빈칸 저장) => (내용만 입력받아 변경)this.setPlusComment
+        CommentRequestDTO dto = new CommentRequestDTO(talk_no, user.getUser_id(), "", sort_no, 1);
+        Comment plusComment = cc.addComment( dto );
+
+        System.out.println("plusComment : " + plusComment.getComment_id());
+
+        Talk post = tc.getTalk(talk_no);
+        ArrayList<Comment> comments = cc.getCommentListByTalkNo(talk_no);
+
+        request.setAttribute("post", post);
+        request.setAttribute("comments", comments);
+        request.setAttribute("plusComment", plusComment); // view에 뿌리기 위해 저장
+        return "/board/boardView_plusCommentAdd.jsp";
+    }
+
+    // 대댓글 등록 메서드
+    @GetMapping("/board/comment/setPlusComment/{talk_no}/{comment_id}")
+    public void setPlusComment(@PathVariable int talk_no, @PathVariable int comment_id, HttpServletRequest request, HttpServletResponse response) throws IOException{
+        Comment comment = cc.getOneComment(comment_id); // 코멘트 받아오기
+        CommentRequestDTO commentRequestDTO = cc.changeDTO(comment.getComment_id()); // 객체 변경
+
+        String plusComment = request.getParameter("plusComment"); // 적은 내용
+        commentRequestDTO.setComment_content(plusComment); // 내용 변경
+
+        cc.updateComment(comment_id, commentRequestDTO); // 업데이트
         response.sendRedirect("/board/"+talk_no);
     }
 
