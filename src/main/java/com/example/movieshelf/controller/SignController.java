@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 
 @RequiredArgsConstructor
 @Controller
@@ -21,33 +23,33 @@ public class SignController {
     }
 
     @PostMapping("/loginPro")
-    public String checkLogin(HttpServletRequest request) {
+    public void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String id = request.getParameter("id");
         String pw = request.getParameter("pw");
         User user = service.getUserById(id);
-        HttpSession session = request.getSession();
 
+        HttpSession session = request.getSession();
         if (user == null) {
             session.setAttribute("logError", 1);
-            return "sign/login.jsp";
+            response.sendRedirect("/login");
         } else if (user.getUser_id().equals(id) && user.getUser_pw().equals(pw)) {
             session.setAttribute("log", user);
             session.setAttribute("logError", 0);
-            return "main.jsp";
+            response.sendRedirect("/");
         } else {
             session.setAttribute("logError", 1);
-            return "sign/login.jsp";
+            response.sendRedirect("/login");
         }
     }
 
     @GetMapping("/logout")
-    public String logout(HttpServletRequest request) {
+    public void logout(HttpServletRequest request, HttpServletResponse response) throws IOException {
         User user = (User) request.getSession().getAttribute("log");
         if (user != null) {
             HttpSession session = request.getSession();
             session.invalidate();
         }
-        return  "main.jsp";
+        response.sendRedirect("/");
     }
 
     @GetMapping("/signUp")

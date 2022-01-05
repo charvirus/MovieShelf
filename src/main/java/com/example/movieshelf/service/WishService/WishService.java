@@ -16,7 +16,7 @@ public class WishService {
 
     public Wish addWish(WishRequestDTO wishRequestDTO){
         Wish wish = new Wish(wishRequestDTO);
-        return wish;
+        return repo.save(wish);
     }
 
     public Wish getWish(int code){

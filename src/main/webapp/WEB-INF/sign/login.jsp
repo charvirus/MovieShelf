@@ -36,11 +36,19 @@
     <footer id="subfooter2"></footer>
 </div>
 <c:set var="logError" value="${sessionScope.logError}"></c:set>
+<c:set var="logPlz" value="${sessionScope.logPlz}"></c:set>
 <c:choose>
     <c:when test="${logError == 1}">
         <script>
             alert("ID, 비밀번호가 틀리거나 존재하지 않는 회원입니다.");
         </script>
+        <c:remove var="logError" scope="session" />
+    </c:when>
+    <c:when test="${logPlz == 1}">
+        <script>
+            alert("로그인 후 사용 가능합니다");
+        </script>
+        <c:remove var="logPlz" scope="session" />
     </c:when>
 </c:choose>
 </body>

@@ -29,83 +29,15 @@
         </ul>
     </div>
     <main>
+        <c:set var="ses" value="${sessionScope.log}"/>
+        <input type="hidden" value="${ses.getUser_id()}" id="session">
         <section>
-            <c:set var="ses" value="${sessionScope.log}"/>
-            <c:set var="movieDate" value="${requestScope.movieDate}"/>
-            <c:set var="movieScore" value="${requestScope.movieScore}"/>
-            <c:set var="movieTime" value="${requestScope.movieTime}"/>
-            <table id="dateTable" border="solid 1px"
-                   style="border-collapse: collapse;" width="50%">
-                <tr>
-                    <td><center>제목</center></td>
-                    <td><center>개봉일</center></td>
-                    <td><center>상영 시간</center></td>
-                    <td><center>IMDB<br>점수</center></td>
-                    <td><center>감독/주연배우</center></td>
-                </tr>
-                <c:forEach var="i" begin="0" end="${movieDate.size()-1}" step="1">
-                <tr>
-                    <td>${movieDate.get(i).getMovie_name()}</td>
-                    <td><center><fmt:formatDate value="${movieDate.get(i).getMovie_reldate()}"/></center></td>
-                    <td><center>${movieDate.get(i).getMovie_time()}</center></td>
-                    <td><center>${movieDate.get(i).getMovie_score()}</center></td>
-                    <td> 감독 : ${movieDate.get(i).getMovie_director()}<br> 주연 : ${movieDate.get(i).getMovie_mainactor()}</td>
-                    <c:if test="${ses != null}">
-                        <td><center><button
-                                onclick="location.href='/addWishList/${movieDate.get(i).getMovie_no()}'">나중에 볼 영화 찜하기</button></center></td>
-                    </c:if>
-                </tr>
-                </c:forEach>
-            </table>
+            <div class="contentContainer">
+                <table id="movie" border="solid 1px"
+                       style="border-collapse: collapse;" width="50%">
 
-            <table id="scoreTable" border="solid 1px"
-                   style="border-collapse: collapse;" width="50%">
-                <tr>
-                    <td><center>제목</center></td>
-                    <td><center>개봉일</center></td>
-                    <td><center>상영 시간</center></td>
-                    <td><center>IMDB<br>점수</center></td>
-                    <td><center>감독/주연배우</center></td>
-                </tr>
-                <c:forEach var="i" begin="0" end="${movieScore.size()-1}" step="1">
-                    <tr>
-                        <td>${movieScore.get(i).getMovie_name()}</td>
-                        <td><center><fmt:formatDate value="${movieScore.get(i).getMovie_reldate()}"/></center></td>
-                        <td><center>${movieScore.get(i).getMovie_time()}</center></td>
-                        <td><center>${movieScore.get(i).getMovie_score()}</center></td>
-                        <td> 감독 : ${movieScore.get(i).getMovie_director()}<br> 주연 : ${movieScore.get(i).getMovie_mainactor()}</td>
-                        <c:if test="${ses != null}">
-                            <td><center><button
-                                    onclick="location.href='/addWishList/${movieScore.get(i).getMovie_no()}'">나중에 볼 영화 찜하기</button></center></td>
-                        </c:if>
-                    </tr>
-                </c:forEach>
-            </table>
-
-            <table id="timeTable" border="solid 1px"
-                   style="border-collapse: collapse;" width="50%">
-                <tr>
-                    <td><center>제목</center></td>
-                    <td><center>개봉일</center></td>
-                    <td><center>상영 시간</center></td>
-                    <td><center>IMDB<br>점수</center></td>
-                    <td><center>감독/주연배우</center></td>
-                </tr>
-                <c:forEach var="i" begin="0" end="${movieTime.size()-1}" step="1">
-                    <tr>
-                        <td>${movieTime.get(i).getMovie_name()}</td>
-                        <td><center>
-                            <fmt:formatDate value="${movieTime.get(i).getMovie_reldate()}"/></center></td>
-                        <td><center>${movieTime.get(i).getMovie_time()}</center></td>
-                        <td><center>${movieTime.get(i).getMovie_score()}</center></td>
-                        <td> 감독 : ${movieTime.get(i).getMovie_director()}<br>   주연 : ${movieTime.get(i).getMovie_mainactor()}</td>
-                        <c:if test="${ses != null}">
-                            <td><center><button
-                                    onclick="location.href='/addWishList/${movieTime.get(i).getMovie_no()}'">나중에 볼 영화 찜하기</button></center></td>
-                        </c:if>
-                    </tr>
-                </c:forEach>
-            </table>
+                </table>
+            </div>
         </section>
     </main>
     <aside></aside>
@@ -113,6 +45,8 @@
     <footer id="mainfooter"><c:import url="../footer.jsp"></c:import></footer>
     <footer id="subfooter2"></footer>
 </div>
+
 <script type="text/javascript" src="script/academy/academy.js"></script>
 </body>
+
 </html>
