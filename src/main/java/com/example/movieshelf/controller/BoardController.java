@@ -138,11 +138,14 @@ public class BoardController {
 
         // 유저 객체 null X, 유저 id 동일(탈퇴자도 중복 가입 없도록 처리되어 무결성 확보됨)
         if(user != null && user.getUser_id().equals(post.getUser_id())){
+            // 게시글 삭제
             int delNum = tc.deleteTalk(talk_no);
 
-            List<Talk> boardList = tc.getTalks();
-            request.setAttribute("boardList", boardList);
+            // 해당 게시글 댓글 삭제(삭제한 댓글 개수 반환:int DB삭제용)
+            int delCommentCnt = cc.deleteCommentByTalkNo(talk_no);
+
             System.out.println("게시글 삭제 삭제완료!\ndelNum: " + delNum);
+            System.out.println("댓글 " + delCommentCnt + "개 삭제");
         }
         // 기존의 데이터는 필요 없으니 sendRedirect
         response.sendRedirect("/boardList");
