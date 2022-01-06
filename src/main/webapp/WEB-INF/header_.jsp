@@ -27,6 +27,7 @@
                 <li class="nav-item"><a class="nav-link" href="/academy">아카데미 작품상</a></li>
                 <li class="nav-item"><a class="nav-link" href="/boxOffice">극장 상영작 영화</a></li>
                 <li class="nav-item"><a class="nav-link" href="/boardList">영화 게시판</a></li>
+                <li class="nav-item"><a class="nav-link" href="/search">영화 검색</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">마이페이지</a></li>
                 <c:set var="ses" value="${sessionScope.log}"/>
                 <c:choose>
