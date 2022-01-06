@@ -28,12 +28,12 @@ public class MovieController {
     public String getAcademyMovies(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.setAttribute("logPlz", 0);
-        return "academy/academy.jsp";
+        return "/academy/academy.jsp";
     }
 
     @GetMapping("/boxOffice")
     public String getBoxoffice() {
-        return "boxoffice/boxoffice.jsp";
+        return "/boxoffice/boxoffice.jsp";
     }
 
     @GetMapping("/addWishFromAca/{code}")

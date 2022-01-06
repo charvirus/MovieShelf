@@ -19,7 +19,7 @@ public class SignController {
 
     @GetMapping("/login")
     public String login() {
-        return "sign/login.jsp";
+        return "/sign/login.jsp";
     }
 
     @PostMapping("/loginPro")
@@ -54,7 +54,7 @@ public class SignController {
 
     @GetMapping("/signUp")
     public String signUp() {
-        return "sign/signUp.jsp";
+        return "/sign/signUp.jsp";
     }
 
 
