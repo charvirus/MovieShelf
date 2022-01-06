@@ -28,13 +28,13 @@ if (d < 10) {
 
 let resultDate = year + month + day;
 
-let kobisKey = "b7e3c237a8a4570c03e27bf1b7e2d371";
+let key = "b7e3c237a8a4570c03e27bf1b7e2d371";
 function getAPI() {
     let movies = [];
     $.ajax({
         method : 'GET',
         url : "http://kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key="
-            + kobisKey
+            + key
             + "&targetDt="
             + resultDate
             + "&itemPerPage=10",
@@ -54,18 +54,16 @@ function addData(movies){
         const movierelDate = e.openDt;
         const audiCnt = parseInt(e.audiCnt);
         const totalAudiCnt = parseInt(e.audiAcc);
-
         $("#boxOffice").append(
-            `	<tr>
-                    <td><center>${movieRank}</center></td>
-                    <td> ${movieName} </td>
-                    <td><center>${movierelDate}</center></td>
-                    <td><center>${audiCnt.toLocaleString('ko-KR')}</center></td>
-                    <td><center>${totalAudiCnt.toLocaleString('ko-KR')}</center></td>
+            `
+				<tr>
+				<td><center>${movieRank}</center></td>
+				<td> ${movieName} </td>
+				<td><center>${movierelDate}</center></td>
+				<td><center>${audiCnt.toLocaleString('ko-KR')}</center></td>
+				<td><center>${totalAudiCnt.toLocaleString('ko-KR')}</center></td>
 				</tr>
 				`
-        //    .toLocaleString('ko-KR')
-        //    숫자의 사용 언어에 따른 표현을 포함한 문자열을 반환한다.
         );
     });
 }
