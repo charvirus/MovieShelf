@@ -4,14 +4,16 @@
 <c:import url="../header_.jsp"></c:import>
     <main>
         <section>
-            <table id="boxOffice" border="1" width="50%">
+            <table class="type22" id="boxOffice" >
+                <thead>
                 <tr id="boxOfficeHeader">
-                    <td width="3%"><center>순위</center></td>
-                    <td width="25%"><center>영화명</center></td>
-                    <td width="5%"><center>개봉일</center></td>
-                    <td width="7%"><center>일일 관객수</center></td>
-                    <td width="7%"><center>누적 관객수</center></td>
+                    <th>순위</th>
+                    <th>영화명</th>
+                    <th>개봉일</th>
+                    <th>일일 관객수</th>
+                    <th>누적 관객</th>
                 </tr>
+                </thead>
             </table>
         </section>
     </main>

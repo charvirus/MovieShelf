@@ -8,24 +8,28 @@
             <c:set var="boardList" value="${requestScope.boardList}" scope="page"/>
 
             <h2>영화 게시판</h2>
-            <table class="boardList" border="1">
+            <table class="type22">
+                <thead>
                 <tr>
-                    <td>번호</td>
-                    <td width="300px">제목</td>
-                    <td>작성자</td>
-                    <td>좋아요</td>
-                    <td>작성일</td>
+                    <th>번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>좋아요</th>
+                    <th>작성일</th>
                 </tr>
+                </thead>
+                <tbody>
                 <c:forEach var="post" items="${boardList}">
                     <tr>
                         <td><c:out value="${post.talk_no}"/></td>
-                        <td onclick="location.href='board/${post.talk_no}'"><c:out
+                        <td onclick="location.href='/board/${post.talk_no}'"><c:out
                                 value="${post.talk_title}"/></td>
                         <td><c:out value="${post.user_id}"/></td>
                         <td><c:out value="${post.talk_likes}"/></td>
                         <td><c:out value="${post.talk_regdate}"/></td>
                     </tr>
                 </c:forEach>
+                </tbody>
             </table>
             <c:if test="${log != null}">
                 <button onclick="location.href='${pageContext.request.contextPath}/boardWriteForm'">글작성</button>

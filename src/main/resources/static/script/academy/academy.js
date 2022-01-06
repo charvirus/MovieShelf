@@ -77,13 +77,17 @@ function getMovies(movies) {
 
 
     $("#movie").append(
-        `<tr>
-            <td><center>제목</center></td>
-            <td><center>개봉일</center></td>
-            <td><center>상영 시간</center></td>
-            <td><center>IMDB<br/>점수</center></td>
-            <td><center>감독/주연배우</center></td>
-        </tr>`
+        `
+        <thead>
+        <tr>
+            <th>제목</th>
+            <th>개봉일</th>
+            <th>상영 시간</th>
+            <th>IMDB<br/>점수</th>
+            <th>감독/주연배우</th>
+        </tr>
+        </thead>
+        `
     );
 
     movies.forEach(e => {
@@ -97,7 +101,9 @@ function getMovies(movies) {
         const d = new Date(movie_reldate);
         if (session != "") {
             $("#movie").append(
-                `<tr>
+                `
+                  <tbody>
+                  <tr>
                     <td><center>${movie_name}</center></td>
                     <td><center>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</center></td>
                     <td><center>${movie_time}</center></td>
@@ -109,17 +115,22 @@ function getMovies(movies) {
                             </button>
                         </center>
                     </td>
-                </tr>`
+                </tr>
+                </tbody>`
             );
         } else {
             $("#movie").append(
-                `<tr>
+                `
+                <tbody>
+                <tr>
                     <td><center>${movie_name}</center></td>
                     <td><center>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</center></td>
                     <td><center>${movie_time}</center></td>
                     <td><center>${movie_score}</center></td>
                     <td>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</td>
-                </tr>`
+                </tr>
+                </tbody>
+            `
             );
         }
 

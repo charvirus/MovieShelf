@@ -56,6 +56,7 @@ function addData(movies){
         const totalAudiCnt = parseInt(e.audiAcc);
         $("#boxOffice").append(
             `
+				<tbody>
 				<tr>
 				<td><center>${movieRank}</center></td>
 				<td> ${movieName} </td>
@@ -63,6 +64,7 @@ function addData(movies){
 				<td><center>${audiCnt.toLocaleString('ko-KR')}</center></td>
 				<td><center>${totalAudiCnt.toLocaleString('ko-KR')}</center></td>
 				</tr>
+				</tbody>
 				`
         );
     });

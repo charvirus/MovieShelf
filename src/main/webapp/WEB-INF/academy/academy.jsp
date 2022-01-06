@@ -15,8 +15,7 @@
     <input type="hidden" value="${ses.getUser_id()}" id="session">
     <section>
         <div class="contentContainer">
-            <table id="movie" border="solid 1px"
-                   style="border-collapse: collapse;" width="50%">
+            <table class="type22" id="movie">
 
             </table>
         </div>
