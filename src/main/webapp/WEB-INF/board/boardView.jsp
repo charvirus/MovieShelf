@@ -73,7 +73,7 @@
                             <td><c:out value="${comment.user_id}"/></td>
                             <td><c:out value="${comment.comment_content}"/></td>
                             <c:if test="${log != null}">
-                            <td><button onclick="location.href='/board/comment/addPlusComment/${post.talk_no}/${comment.sort_no}'">대댓글</button></td>
+                            <td><button onclick="location.href='/board/comment/addPlusComment/${post.talk_no}/${comment.sort_no}/${comment.comment_id}'">대댓글</button></td>
                             </c:if>
                         </c:when>
                         <c:when test="${comment.depth == 1}">

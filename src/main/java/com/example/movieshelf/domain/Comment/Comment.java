@@ -21,7 +21,7 @@ public class Comment {
 
     @NonNull
     @Column
-    private int talk_no, sort_no, depth;
+    private int talk_no, sort_no, depth, mother_comment_id;
 
     @NonNull
     @Column
@@ -39,6 +39,7 @@ public class Comment {
         this.comment_date = commentRequestDTO.getComment_date();
         this.sort_no = commentRequestDTO.getSort_no();
         this.depth = commentRequestDTO.getDepth();
+        this.mother_comment_id = commentRequestDTO.getMother_comment_id();
     }
 
     public void update(CommentRequestDTO commentRequestDTO){

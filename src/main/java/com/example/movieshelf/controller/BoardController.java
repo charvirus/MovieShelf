@@ -161,13 +161,13 @@ public class BoardController {
         String comment = request.getParameter("comment");
         // 게시글 번호, 현재 로그인된 유저 id, 댓글 내용
         // ㄴ 나머지 mysql에서 auto 설정
-        cc.addComment(new CommentRequestDTO(talk_no, user.getUser_id(), comment, -1, 0));
+        cc.addComment(new CommentRequestDTO(talk_no, user.getUser_id(), comment, -1, 0, 0));
         response.sendRedirect("/board/"+talk_no);
     }
 
     // 대댓글 추가 및 이동 메서드 => 부모 댓글의 번호를 sort_no로 가지고 들어온다
-    @GetMapping("/board/comment/addPlusComment/{talk_no}/{sort_no}")
-    public String addPlusComment(@PathVariable int talk_no, @PathVariable int sort_no, HttpServletRequest request, HttpServletResponse response) throws IOException{
+    @GetMapping("/board/comment/addPlusComment/{talk_no}/{sort_no}/{mother_comment_id}")
+    public String addPlusComment(@PathVariable int talk_no, @PathVariable int sort_no, @PathVariable int mother_comment_id, HttpServletRequest request, HttpServletResponse response) throws IOException{
         HttpSession session = request.getSession(false);
         User user = (User)session.getAttribute("log");
         Talk post = tc.getTalk(talk_no);
@@ -175,7 +175,7 @@ public class BoardController {
         // 게시글 번호, 현재 로그인된 유저 id, 댓글 내용
         // ㄴ 나머지 mysql에서 auto 설정
         // 객체 생성(comment 부분 빈칸 저장) => (내용만 입력받아 변경)this.setPlusComment
-        CommentRequestDTO dto = new CommentRequestDTO(talk_no, user.getUser_id(), "", sort_no, 1);
+        CommentRequestDTO dto = new CommentRequestDTO(talk_no, user.getUser_id(), "", sort_no, 1, mother_comment_id);
         Comment plusComment = cc.addComment( dto );
         ArrayList<Comment> comments = cc.getCommentListByTalkNo(talk_no);
         System.out.println("plusComment의 sortNum : " + plusComment.getSort_no());
@@ -286,30 +286,29 @@ public class BoardController {
     public void deleteComment(@PathVariable int comment_id, HttpServletResponse response) throws IOException{
         Comment comment = cc.getOneComment(comment_id);
         System.out.println("댓글 삭제 완료!");
-        int howMany = 1;
+        int howMany = 1; // 삭제된 후에 sort_no 정렬해주기 위한 int 변수
         if(comment.getDepth() == 1){
             cc.deleteComment(comment_id);
         }
         else {
-            howMany = this.deleteAllComments(comment.getTalk_no(), comment.getSort_no());
+            cc.deleteComment(comment_id); // 해당 객체 삭제하고
+            howMany += this.deleteAllComments(comment.getTalk_no(), comment_id); // 대댓글들도 삭제
         }
         this.pullSortNo(comment.getTalk_no(), comment.getSort_no(), howMany);
         response.sendRedirect("/board/"+comment.getTalk_no());
     }
 
     // 대댓글 같이 삭제하는 메서드
-    private int deleteAllComments(int talk_no, int sort_no){
+    private int deleteAllComments(int talk_no, int mother_comment_id){
         // 삭제 하고 값을 반환해줘
         ArrayList<Comment> comments = cc.getCommentListByTalkNo(talk_no);
         ArrayList<Comment> deleteArr = new ArrayList<>();
 
         for (Comment c : comments) {
-            // 같거나 크고, 다음 0보다 작아야해  (수정수정)
-            if (c.getSort_no() >= sort_no && (c.getSort_no() > sort_no && c.getDepth() == 1)) {
+            // 같거나 크고, 다음 depth 0보다 작아야해
+            if (c.getMother_comment_id() == mother_comment_id) {
                 deleteArr.add(c);
             }
-
-
         }
         return cc.deleteComments(deleteArr); // 삭제 수 반환
     }

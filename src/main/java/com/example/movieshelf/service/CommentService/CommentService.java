@@ -84,10 +84,9 @@ public class CommentService {
     // 삭제 목록 받아서 삭제하는 메서드
     @Transactional
     public int deleteComments(ArrayList<Comment> comments) {
-        int howMany = 0;
+        int howMany = comments.size();
         for (Comment c : comments) {
             repo.deleteById(c.getComment_id());
-            howMany++;
         }
         return howMany;
     }
@@ -105,7 +104,7 @@ public class CommentService {
     // Comment => CommentRequestDTO 바꿔주는 객체
     public CommentRequestDTO changeDTO(int comment_id){
         Comment tmp = getOneComment(comment_id);
-        return new CommentRequestDTO(tmp.getComment_id(), tmp.getTalk_no(), tmp.getUser_id(),tmp.getComment_content(), tmp.getComment_date(), tmp.getSort_no(), tmp.getDepth());
+        return new CommentRequestDTO(tmp.getComment_id(), tmp.getTalk_no(), tmp.getUser_id(),tmp.getComment_content(), tmp.getComment_date(), tmp.getSort_no(), tmp.getDepth(), tmp.getMother_comment_id());
     }
 
 }
