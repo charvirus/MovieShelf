@@ -102,7 +102,7 @@ function getMovies(movies) {
                     <td><center>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</center></td>
                     <td><center>${movie_time}</center></td>
                     <td><center>${movie_score}</center></td>
-                    <td><center>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</center></td>
+                    <td>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</td>
                     <td><center>
                             <button onClick="location.href='/addWishFromAca/${movie_no}'">
                                 나중에 볼 영화 찜하기
@@ -118,7 +118,7 @@ function getMovies(movies) {
                     <td><center>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</center></td>
                     <td><center>${movie_time}</center></td>
                     <td><center>${movie_score}</center></td>
-                    <td><center>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</center></td>
+                    <td>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</td>
                 </tr>`
             );
         }

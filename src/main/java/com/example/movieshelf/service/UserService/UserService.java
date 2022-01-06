@@ -24,11 +24,10 @@ public class UserService {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
         userRequestDto.setUser_regdate(timestamp);
 
-       if (checkUser != null) {
+        if (checkUser != null) {
             return null;
-        } else {
+        }else {
             User user = new User(userRequestDto);
-
             return repo.save(user);
         }
     }

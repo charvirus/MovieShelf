@@ -36,6 +36,11 @@ public class UserController {
         return service.getUserById(id);
     }
 
+    @PostMapping("/user/checkUser")
+    public User checkUser(@RequestBody UserRequestDTO userRequestDto) {
+        return service.getUserById(userRequestDto.getUser_id());
+    }
+
     // 3.Update
     @PutMapping("/user/update/{code}")
     public User updateUser(@PathVariable int code,@RequestBody UserRequestDTO userRequestDto){

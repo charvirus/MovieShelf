@@ -10,7 +10,6 @@
 <html>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script type="text/javascript" src="script/signUp.js"></script>
     <title>Movie Shelf - Sign Up</title>
 </head>
 <body>
@@ -21,12 +20,16 @@
     <nav></nav>
     <main>
         <section>
-            <form  onSubmit="return false;">
+            <form onSubmit="return false;">
                 <article id="idpws">
-                    <p>이름&#9;<input type="text" name="name" required></p>
-                    <p>닉네임&#9;<input type="text" name="nickname" required></p>
-                    <p>ID&#9;<input type="text" name="id" required></p>
-                    <p>PW&#9;<input type="password" name="pw" required></p>
+                    <p>ID&#9;<input type="text" name="id" id="idInput" required></p>
+                    <p id="pId"></p>
+                    <p>PW&#9;<input type="password" name="pw" id="pwInput" required></p>
+                    <p id="pPw"></p>
+                    <p>이름&#9;<input type="text" name="name" id="nameInput" required></p>
+                    <p id="pName"></p>
+                    <p>닉네임&#9;<input type="text" name="nickname" id="nicknameInput" required></p>
+                    <p id="pNickname"></p>
                     <input id="submit" type="submit" value="가입" onclick="signUpUser(form)">
                 </article>
             </form>
@@ -45,5 +48,7 @@
         </script>
     </c:when>
 </c:choose>
+<script type="text/javascript" src="script/signUp.js"></script>
+
 </body>
 </html>
