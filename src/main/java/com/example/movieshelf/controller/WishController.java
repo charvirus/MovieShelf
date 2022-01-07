@@ -1,11 +1,14 @@
 package com.example.movieshelf.controller;
 
+import com.example.movieshelf.domain.Comment.Comment;
+import com.example.movieshelf.domain.Talk.Talk;
 import com.example.movieshelf.domain.Wish.Wish;
 import com.example.movieshelf.domain.Wish.WishRequestDTO;
 import com.example.movieshelf.service.WishService.WishService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -18,9 +21,9 @@ public class WishController {
         return service.addWish(wishRequestDTO);
     }
 
-    @GetMapping("/wish/getWish/{code}")
-    public Wish getWish(@PathVariable int code){
-        return service.getWish(code);
+    @GetMapping("/wish/getWish/{wish_no}")
+    public Wish getWish(@PathVariable int wish_no){
+        return service.getWish(wish_no);
     }
 
     @GetMapping("/wish/getWishes")
@@ -29,9 +32,21 @@ public class WishController {
         return service.getWishes();
     }
 
-    @DeleteMapping("/wish/delete/{code}")
-    public int deleteWish(@PathVariable int code)
+    @GetMapping("/wish/getWish/{user_id}")
+    public ArrayList<Wish> getWishes(@PathVariable String user_id){
+        List<Wish> wishes = service.getWishes();
+        ArrayList<Wish> sendWishes = new ArrayList<Wish>();
+        for(Wish w : wishes){
+            if(w.getUser_id().equals(user_id)){
+                sendWishes.add(w);
+            }
+        }
+        return sendWishes;
+    }
+
+    @DeleteMapping("/wish/delete/{wish_no}")
+    public int deleteWish(@PathVariable int wish_no)
     {
-        return service.deleteWish(code);
+        return service.deleteWish(wish_no);
     }
 }
