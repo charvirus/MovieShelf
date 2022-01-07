@@ -26,26 +26,25 @@ public class MypageController {
     private final TalkController tc;
     private final WishController wc;
 
-    @PostMapping("/main/mypage/{page_no}")
-    public String mypage(@PathVariable int page_no, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    @GetMapping("/main/mypage/{page_no}")
+    public String mypage(@PathVariable int page_no, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         User user = (User)session.getAttribute("log");
-        if(user == null){
-            response.sendRedirect("/");
+        if(user != null){
+            // 게시판 리스트
+            ArrayList<Talk> talkArr = tc.getTalk(user.getUser_id());
+            request.setAttribute("ta", talkArr);
+
+            // 댓글 리스트
+            ArrayList<Comment> commentArr = cc.getCommentListByUserId(user.getUser_id());
+            request.setAttribute("ca", commentArr);
+
+            // 위시 리스트
+            ArrayList<Wish> wishArr = wc.getWishes(user.getUser_id());
+            request.setAttribute("wa", wishArr);
+
+            request.setAttribute("select", page_no);
         }
-       // 게시판 리스트
-        ArrayList<Talk> talkArr = tc.getTalk(user.getUser_id());
-        request.setAttribute("ta", talkArr);
-
-        // 댓글 리스트
-        ArrayList<Comment> commentArr = cc.getCommentListByUserId(user.getUser_id());
-        request.setAttribute("ca", commentArr);
-
-        // 위시 리스트
-        ArrayList<Wish> wishArr = wc.getWishes(user.getUser_id());
-        request.setAttribute("wa", wishArr);
-
-        request.setAttribute("select", page_no);
         return "/mypage/mypage_main.jsp";
     }
 

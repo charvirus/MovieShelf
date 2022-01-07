@@ -28,7 +28,7 @@
                 <li class="nav-item"><a class="nav-link" href="/boxOffice">박스오피스 TOP10</a></li>
                 <li class="nav-item"><a class="nav-link" href="/boardList">영화 TalkTalk</a></li>
                 <li class="nav-item"><a class="nav-link" href="/search">영화 검색</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">마이페이지</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="/main/mypage/1">마이페이지</a></li>
                 <c:set var="ses" value="${sessionScope.log}"/>
                 <c:choose>
                     <c:when test="${ses != null}">

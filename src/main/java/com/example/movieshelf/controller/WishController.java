@@ -1,7 +1,5 @@
 package com.example.movieshelf.controller;
 
-import com.example.movieshelf.domain.Comment.Comment;
-import com.example.movieshelf.domain.Talk.Talk;
 import com.example.movieshelf.domain.Wish.Wish;
 import com.example.movieshelf.domain.Wish.WishRequestDTO;
 import com.example.movieshelf.service.WishService.WishService;
