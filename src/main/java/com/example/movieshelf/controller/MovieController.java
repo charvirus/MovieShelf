@@ -36,6 +36,11 @@ public class MovieController {
         return "/boxoffice/boxoffice.jsp";
     }
 
+    @GetMapping("/search")
+    public String getSearchMovie() {
+        return "/search/search.jsp";
+    }
+
     @GetMapping("/addWishFromAca/{code}")
     public void addWishList(@PathVariable int code, HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
