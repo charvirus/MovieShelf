@@ -2,9 +2,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <c:import url="../header_.jsp"></c:import>
+<!-- Page header with logo and tagline-->
+<header class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+        <div class="text-center my-5">
+            <h1 class="fw-bolder">나만의 영화 선반</h1>
+            <p class="lead mb-0">Movie Shelf</p>
+        </div>
+    </div>
+</header>
 <main>
     <section>
+        <div class="small text-muted">MovieShelf</div>
         <h2>게시글 수정</h2>
+        <hr>
         <form method="post" action="${pageContext.request.contextPath}/boardUpdate/${post.talk_no}">
             <input type="hidden">
             <c:set var="post" value="${requestScope.post}" scope="request"/>

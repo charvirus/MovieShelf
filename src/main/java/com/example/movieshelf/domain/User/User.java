@@ -43,5 +43,4 @@ public class User {
         this.user_resign = userRequestDTO.getUser_resign();
         this.user_resigndate = userRequestDTO.getUser_resigndate();
     }
-
 }

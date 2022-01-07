@@ -83,7 +83,7 @@ function getMovies(movies) {
             <th>제목</th>
             <th>개봉일</th>
             <th>상영 시간</th>
-            <th>IMDB<br/>점수</th>
+            <th>IMDB(점수)</th>
             <th>감독/주연배우</th>
         </tr>
         </thead>
@@ -104,16 +104,16 @@ function getMovies(movies) {
                 `
                   <tbody>
                   <tr>
-                    <td><center>${movie_name}</center></td>
-                    <td><center>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</center></td>
-                    <td><center>${movie_time}</center></td>
-                    <td><center>${movie_score}</center></td>
+                    <td>${movie_name}</td>
+                    <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</center></td>
+                    <td>${movie_time}</td>
+                    <td>${movie_score}</td>
                     <td>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</td>
-                    <td><center>
-                            <button onClick="location.href='/addWishFromAca/${movie_no}'">
+                    <td>
+                            <button class="btn btn-primary" onClick="location.href='/addWishFromAca/${movie_no}'">
                                 나중에 볼 영화 찜하기
                             </button>
-                        </center>
+                        
                     </td>
                 </tr>
                 </tbody>`
@@ -123,10 +123,10 @@ function getMovies(movies) {
                 `
                 <tbody>
                 <tr>
-                    <td><center>${movie_name}</center></td>
-                    <td><center>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</center></td>
-                    <td><center>${movie_time}</center></td>
-                    <td><center>${movie_score}</center></td>
+                    <td>${movie_name}</td>
+                    <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</td>
+                    <td>${movie_time}</td>
+                    <td>${movie_score}</td>
                     <td>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</td>
                 </tr>
                 </tbody>

@@ -58,11 +58,11 @@ function addData(movies){
             `
 				<tbody>
 				<tr>
-				<td><center>${movieRank}</center></td>
+				<td>${movieRank}</td>
 				<td> ${movieName} </td>
-				<td><center>${movierelDate}</center></td>
-				<td><center>${audiCnt.toLocaleString('ko-KR')}</center></td>
-				<td><center>${totalAudiCnt.toLocaleString('ko-KR')}</center></td>
+				<td>${movierelDate}</td>
+				<td>${audiCnt.toLocaleString('ko-KR')}</td>
+				<td>${totalAudiCnt.toLocaleString('ko-KR')}</td>
 				</tr>
 				</tbody>
 				`
