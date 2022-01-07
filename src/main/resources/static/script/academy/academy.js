@@ -72,10 +72,9 @@ $("input#r3").click(function () {
     }
 });
 
+
 function getMovies(movies) {
     $("#movie").empty();
-
-
     $("#movie").append(
         `
         <thead>
@@ -89,7 +88,8 @@ function getMovies(movies) {
         </thead>
         `
     );
-
+    let image = "";
+    let link = "";
     movies.forEach(e => {
         const movie_no = e.movie_no;
         const movie_director = e.movie_director;
@@ -99,23 +99,23 @@ function getMovies(movies) {
         const movie_reldate = e.movie_reldate;
         const movie_time = e.movie_time;
         const d = new Date(movie_reldate);
+
         if (session != "") {
             $("#movie").append(
                 `
                   <tbody>
-                  <tr>
-                    <td>${movie_name}</td>
-                    <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</center></td>
-                    <td>${movie_time}</td>
-                    <td>${movie_score}</td>
-                    <td>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</td>
-                    <td>
+                    <tr>
+                        <td>${movie_name}</td>
+                        <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</center></td>
+                        <td>${movie_time}</td>
+                        <td>${movie_score}</td>
+                        <td>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</td>
+                        <td>
                             <button class="btn btn-primary" onClick="location.href='/addWishFromAca/${movie_no}'">
                                 나중에 볼 영화 찜하기
                             </button>
-                        
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
                 </tbody>`
             );
         } else {
@@ -133,6 +133,29 @@ function getMovies(movies) {
             `
             );
         }
-
     });
+
+}
+
+function getImage(title, date) {
+    $.ajax({
+        method: "get",
+        url: "/searchResultJson/" + title,
+        dataType: "json"
+    }).done(function (data) {
+        data.items.forEach(e => {
+
+            let tempTitle = e.title;
+
+            tempTitle = tempTitle.replace("<b>", "");
+            tempTitle = tempTitle.replace("</b>", "");
+
+            if (tempTitle === title && Number(e.pubDate) === date) {
+                console.log("일치");
+                console.log(tempTitle);
+                console.log(e.image);
+            }
+
+        });
+    })
 }

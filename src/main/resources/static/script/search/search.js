@@ -4,16 +4,13 @@ function getSearchResult() {
     let movies = [];
     const title = $('#movieSearch').val();
 
-    isEnd = false;
-    let page = 1;
-
-
     if (title == "") {
         alert("제목을 입력해주세요.");
     } else {
         $.ajax({
             method: "get",
-            url: "/searchResultJson/" + title,
+            url: "/searchResultJson/" + title
+            + "&display=25",
             dataType: "json"
         }).done(function (data) {
 
@@ -34,6 +31,7 @@ function printResult(movies) {
 
         const movieTitle = e.title;
         let movieTitleReplaced = movieTitle;
+        // 정규식
         movieTitleReplaced = movieTitleReplaced.replace("<b>", "");
         movieTitleReplaced = movieTitleReplaced.replace("</b>","");
         const moviePubDate = e.pubDate;
