@@ -15,4 +15,7 @@ public interface MovieRepository extends JpaRepository<Movie,Integer> {
 
     @Query("select m from Movie m order by m.movie_time")
     List<Movie> findMovieByTime();
+
+    @Query("Select m from Movie m where m.movie_name like ?1")
+    List<Movie> findMovieByName(String name);
 }

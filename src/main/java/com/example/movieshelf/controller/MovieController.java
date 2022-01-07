@@ -41,6 +41,8 @@ public class MovieController {
         return "/search/search.jsp";
     }
 
+
+
     @GetMapping("/addWishFromAca/{code}")
     public void addWishList(@PathVariable int code, HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
@@ -57,16 +59,43 @@ public class MovieController {
                 WishRequestDTO dto = new WishRequestDTO(user.getUser_id(), code, getMovie.getMovie_name(),timestamp);
                 wishService.addWish(dto);
             }
-
-
             response.sendRedirect("/academy");
         }
+    }
 
+    @GetMapping("/addWishFromSearch/{name}")
+    public void addWishList(@PathVariable String name, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        HttpSession session = request.getSession(false);
+        User user = (User) session.getAttribute("log");
+        System.out.println(1);
+        if (user == null) {
+            session.setAttribute("logPlz", 1);
+            response.sendRedirect("/login");
+        } else {
+            System.out.println(2);
+            Movie getMovie = movieService.getMovieByName(name);
+            String movieName = name;
+            System.out.println(3);
 
+            if (getMovie != null){
+                movieName = getMovie.getMovie_name();
+            }
+            System.out.println(user.getUser_id());
+            System.out.println(movieName);
+            if (checkWishList(user.getUser_id(),movieName)) {
+                System.out.println(4);
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                WishRequestDTO dto = new WishRequestDTO(user.getUser_id(), movieName,timestamp);
+                wishService.addWish(dto);
+            }
+            response.sendRedirect("/search");
+        }
     }
 
     private boolean checkWishList(String id, int code, String name) {
+        name = name == null ? "" : name;
         List<Wish> wish = wishService.getWishes();
+
         for (Wish wishdto : wish) {
             if (wishdto.getUser_id().equals(id) && (wishdto.getMovie_name().equals(name) || wishdto.equals(code))) {
                 return false;
@@ -75,4 +104,17 @@ public class MovieController {
 
         return true;
     }
+
+    private boolean checkWishList(String id, String name) {
+        List<Wish> wish = wishService.getWishes();
+        System.out.println("name : "+name);
+        for (Wish wishdto : wish) {
+            if (wishdto.getUser_id().equals(id) && (wishdto.getMovie_name().equals(name))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }

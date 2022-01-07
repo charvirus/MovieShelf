@@ -27,5 +27,9 @@ public class WishRequestDTO {
         this.add_date = add_date;
     }
 
-
+    public WishRequestDTO(String user_id, String movie_name, Timestamp add_date) {
+        this.user_id = user_id;
+        this.movie_name = movie_name;
+        this.add_date = add_date;
+    }
 }

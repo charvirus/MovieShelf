@@ -29,6 +29,7 @@ public class MovieService {
         );
     }
 
+
     public List<Movie> getMovies(){
         return repo.findAll();
     }
@@ -43,6 +44,14 @@ public class MovieService {
 
     public List<Movie> getMoviesByTime(){
         return repo.findMovieByTime();
+    }
+
+    public Movie getMovieByName(String name){
+        List<Movie> movie = repo.findMovieByName(name);
+        if(movie.size()!=0){
+            return movie.get(0);
+        }
+        return null;
     }
 
     @Transactional

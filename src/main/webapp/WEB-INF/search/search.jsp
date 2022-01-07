@@ -8,11 +8,14 @@
     <c:set var="ses" value="${sessionScope.log}"/>
     <input type="hidden" value="${ses.getUser_id()}" id="session">
     <section>
-        <form onsubmit="getResult(); return  false">
+        <form onsubmit="getSearchResult(); return  false">
             <h1>영화 검색</h1>
             <input type="text" name="movieSearch" id="movieSearch">
             <button  id="search" type="submit">검색</button>
         </form>
+        <table id="searchResult">
+
+        </table>
     </section>
 </main>
 

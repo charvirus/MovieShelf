@@ -1,25 +1,76 @@
-let isEnd = false;
+const session = document.getElementById("session").value;
 
-function getResult(){
+function getSearchResult() {
+    let movies = [];
     const title = $('#movieSearch').val();
 
     isEnd = false;
     let page = 1;
 
 
-    let key = "b7e3c237a8a4570c03e27bf1b7e2d371";
-    if(title == ""){
+    if (title == "") {
         alert("제목을 입력해주세요.");
-    }else{
+    } else {
         $.ajax({
-            method: 'GET',
-            url: 'http://www.kobis.or.kr/kobisopenapi/webservice/rest/movie/searchMovieList.json?key=' +
-                key
-            + '&movieNm='
-            + title,
-           dataType : "json"
-        }).done(function (msg){
-            console.log(msg);
+            method: "get",
+            url: "/searchResultJson/" + title,
+            dataType: "json"
+        }).done(function (data) {
+
+            data.items.forEach(e => {
+                movies.push(e);
+            });
+            printResult(movies);
+        }).fail(function () {
+            alert("오류");
         });
     }
+}
+
+function printResult(movies) {
+    console.log(movies.length);
+    $("#searchResult").empty();
+    movies.forEach(e => {
+
+        const movieTitle = e.title;
+        let movieTitleReplaced = movieTitle;
+        movieTitleReplaced = movieTitleReplaced.replace("<b>", "");
+        movieTitleReplaced = movieTitleReplaced.replace("</b>","");
+        const moviePubDate = e.pubDate;
+        const movieDirector = e.director;
+        const movieUserRating = e.userRating;
+        const moviePoster = e.image;
+        const movieLink = e.link;
+        if (session != "") {
+            $("#searchResult").append(`<tbody>
+                <tr>
+                    <td><img class="image" src="${moviePoster}"/></td>
+                    <td><a href="${movieLink}">${movieTitle}</a></td>
+                    <td>${moviePubDate}</td>
+                    <td>${movieDirector}</td>
+                    <td>${movieUserRating}</td>
+                     <td><center>
+                            <button onClick="location.href='/addWishFromSearch/${movieTitleReplaced}'">
+                                나중에 볼 영화 찜하기
+                            </button>
+                        </center>
+                    </td>
+                </tr>
+            </tbody>
+        `)
+        } else {
+            $("#searchResult").append(
+                `<tbody>
+                <tr>
+                    <td><img class="image" src="${moviePoster}"/></td>
+                    <td><a href="${movieLink}">${movieTitle}</a></td>
+                    <td>${moviePubDate}</td>
+                    <td>${movieDirector}</td>
+                    <td>${movieUserRating}</td>
+                </tr>
+            </tbody>
+        `
+            );
+        }
+    });
 }
