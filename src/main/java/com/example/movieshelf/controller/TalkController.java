@@ -22,14 +22,26 @@ public class TalkController {
         return service.addTalk(talkRequestDTO);
     }
 
+    @GetMapping("/talk/getTalks")
+    public List<Talk> getTalks(){
+        return service.getTalks();
+    }
+
     @GetMapping("/talk/getTalk/{talk_no}")
     public Talk getTalk(@PathVariable int talk_no){
         return service.getTalk(talk_no);
     }
 
-    @GetMapping("/talk/getTalks")
-    public List<Talk> getTalks(){
-        return service.getTalks();
+    @GetMapping("/talk/getTalk/{user_id}")
+    public ArrayList<Talk> getTalk(@PathVariable String user_id){
+        List<Talk> talks = service.getTalks();
+        ArrayList<Talk> sendTalks = new ArrayList<Talk>();
+        for(Talk t : talks){
+            if(t.getUser_id().equals(user_id)){
+                sendTalks.add(t);
+            }
+        }
+        return sendTalks;
     }
 
     @PutMapping("/talk/update/{talk_no}")

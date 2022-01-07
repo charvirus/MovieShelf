@@ -116,7 +116,7 @@ public class CommentController {
         return service.deleteComments(comments);
     }
 
-        @GetMapping("/comment/updateComment/{comment_id}")
+    @GetMapping("/comment/updateComment/{comment_id}")
     public Comment updateComment(@PathVariable int comment_id, @RequestBody CommentRequestDTO commentRequestDTO) {
         return service.updateComment(comment_id, commentRequestDTO);
     }

@@ -44,13 +44,4 @@
         </div>
     </div>
 </nav>
-<!-- Page header with logo and tagline-->
-<header class="py-5 bg-light border-bottom mb-4">
-    <div class="container">
-        <div class="text-center my-5">
-            <h1 class="fw-bolder">나만의 영화 선반</h1>
-            <p class="lead mb-0">Movie Shelf</p>
-        </div>
-    </div>
-</header>
 
