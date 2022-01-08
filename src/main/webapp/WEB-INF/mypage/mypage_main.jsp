@@ -12,19 +12,16 @@
     <c:set var="wa" value="${requestScope.wa}" scope="page"/>
     <c:choose>
         <c:when test="${log != null}">
-            <button onclick="location.href='/mypage/mypage_check'">개인정보수정</button>
-            <button onclick="location.href='/main/mypage/2'">게시글</button>
-            <button onclick="location.href='/main/mypage/3'">댓글</button>
-            <button onclick="location.href='/main/mypage/4'">위시리스트</button>
+            <h2>나의 마이페이지 목록</h2>
+            <button onclick="location.href='/main/mypage/update'">개인정보수정</button>
+            <button onclick="location.href='/main/mypage/1'">게시글</button>
+            <button onclick="location.href='/main/mypage/2'">댓글</button>
+            <button onclick="location.href='/main/mypage/3'">위시리스트</button>
 
             <section>
                 <div class="small text-muted">MovieShelf</div>
-                <h2>나의 마이페이지 목록</h2>
                 <c:choose>
                     <c:when test="${select == 1}">
-
-                    </c:when>
-                    <c:when test="${select == 2}">
                         <h4>나의 게시글 수 : <c:out value="${ta.size()}"/> </h4>
                         <h4>게시글 목록</h4>
                         <table class="type22">
@@ -49,7 +46,7 @@
                             </tbody>
                         </table><br>
                     </c:when>
-                    <c:when test="${select == 3}">
+                    <c:when test="${select == 2}">
                         <h4>나의 댓글 수 : <c:out value="${ca.size()}"/> </h4>
                         <h4>댓글 목록</h4>
                         <table class="type22">
@@ -73,12 +70,29 @@
                             </tbody>
                         </table><br>
                     </c:when>
-                    <c:when test="${select == 4}">
+                    <c:when test="${select == 3}">
                         <h4>나의 볼영화 수 : <c:out value="${wa.size()}"/> </h4>
                         <h4>찜 목록</h4>
-                        <c:forEach var="wish" items="${wa}">
-                            <c:out value="${wish}"/>
-                        </c:forEach>
+                        <table class="type22">
+                            <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>영화번호</th>
+                                <th>영화제목</th>
+                                <th>선택일</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="wish" items="${wa}">
+                                <tr>
+                                    <td><c:out value="${wish.wish_no}"/></td>
+                                    <td><c:out value="${wish.movie_no}"/></td>
+                                    <td onclick="location.href='/board/${wish.movie_name}'"><c:out value="${comment.comment_content}"/></td>
+                                    <td><c:out value="${wish.add_date}"/> </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table><br>
                     </c:when>
                 </c:choose>
             </section>

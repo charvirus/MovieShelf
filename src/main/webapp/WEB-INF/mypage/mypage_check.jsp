@@ -5,12 +5,9 @@
 <main>
     <section>
         <h2>본인 확인</h2>
-        <form method="post" action="${pageContext.request.contextPath}/Identification/${post.}">
-            <c:set var="pwC" value="${requestScope.post}" scope="request"/>
-            <article id="pwC">
-                <span>PW&#9;<input type="password" name="pwC" required></span>
-                <input id="submit" type="submit" value="조회하기">
-            </article>
+        <form action="/main/Identification">
+                <input type="password" name="pwC" id="pwC" required/>
+                <input type="submit" value="비밀번호체크">
         </form>
     </section>
 </main>

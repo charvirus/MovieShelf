@@ -26,6 +26,19 @@ public class MypageController {
     private final TalkController tc;
     private final WishController wc;
 
+    @GetMapping("mypage")
+    public String getMypageCheck(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        User user = (User)session.getAttribute("log");
+        if(user == null){
+            return "/main.jsp";
+        }
+        return "/mypage/mypage_check.jsp";
+    }
+
+    @GetMapping("/main/mypage/update")
+    public String update(){return "/mypage/mypage_update.jsp";}
+
     @GetMapping("/main/mypage/{page_no}")
     public String mypage(@PathVariable int page_no, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
@@ -48,5 +61,16 @@ public class MypageController {
         return "/mypage/mypage_main.jsp";
     }
 
+    @GetMapping("/main/Identification")
+    public String mypageCheck(HttpServletRequest request){
+        HttpSession session = request.getSession(false);
+        User user = (User)session.getAttribute("log");
+        String pwC = request.getParameter("pwC");
+
+        if(user.getUser_pw().equals(pwC)){
+            return "/mypage/mypage_main.jsp";
+        }
+        return "/mypage/mypage_check.jsp";
+    }
 
 }
