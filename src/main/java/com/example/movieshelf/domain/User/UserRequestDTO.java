@@ -29,6 +29,12 @@ public class UserRequestDTO {
         this.user_name = user_name;
     }
 
+    public UserRequestDTO(String user_pw, String user_nickname, String user_name) {
+        this.user_pw = user_pw;
+        this.user_nickname = user_nickname;
+        this.user_name = user_name;
+    }
+
     public UserRequestDTO(String user_id) {
         this.user_id = user_id;
     }

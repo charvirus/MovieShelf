@@ -5,6 +5,7 @@ import com.example.movieshelf.domain.Comment.CommentRequestDTO;
 import com.example.movieshelf.domain.Talk.Talk;
 import com.example.movieshelf.domain.User.User;
 import com.example.movieshelf.domain.Wish.Wish;
+import com.example.movieshelf.service.UserService.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +27,7 @@ public class MypageController {
     private final CommentController cc;
     private final TalkController tc;
     private final WishController wc;
+    private final UserService us;
 
     @GetMapping("mypage")
     public String getMypageCheck(HttpServletRequest request){
@@ -66,6 +68,7 @@ public class MypageController {
     public String mypageCheck(HttpServletRequest request){
         HttpSession session = request.getSession(false);
         User user = (User)session.getAttribute("log");
+        user = us.getUserById(user.getUser_id());
         String pwC = request.getParameter("pwC");
 
         if(user.getUser_pw().equals(pwC)){
