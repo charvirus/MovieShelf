@@ -19,16 +19,19 @@
             <section>
                 <div class="small text-muted">MovieShelf</div>
                 <h2>개인정보 수정</h2>
-            <ul>
-                <li>아이디 : <c:out value="${pwC.user_id}"/></li>
-                <li>비밀번호 : <input type="password" name="pw"></li>
-                <li>이름 : <input type="text" name="name" value="${pwC.user_name}"></li>
-                <li>닉네임 : <input type="text" name="nick_name" value="${pwC.user_nickname}"></li>
-            </ul>
+                <form action="/main/correct">
+                    <ul>
+                        <li>아이디 : <c:out value="${log.user_id}"/></li>
+                        <li>비밀번호 : <input type="password" name="pw"></li>
+                        <li>이름 : <input type="text" name="name" id="name" value="${log.user_name}"></li>
+                        <li>닉네임 : <input type="text" name="nick_name" id="nick_name" value="${log.user_nickname}"></li>
+                        <li>가입일자 : <c:out value="${log.user_regdate}"/></li>
+                    </ul>
+                </form>
             <input type="submit" value="수정">
         </c:when>
     </c:choose>
-    <c:set var="pwC" value="${sessionScope.log}"/>
+
 
 </main>
 <c:import url="../footer_.jsp"></c:import>

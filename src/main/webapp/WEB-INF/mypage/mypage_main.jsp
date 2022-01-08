@@ -31,6 +31,7 @@
                                 <th>제목</th>
                                 <th>좋아요</th>
                                 <th>작성일</th>
+                                <th>삭제</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -41,6 +42,9 @@
                                             value="${post.talk_title}"/></td>
                                     <td><c:out value="${post.talk_likes}"/></td>
                                     <td><c:out value="${post.talk_regdate}"/></td>
+                                    <td><button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/mypage/boardDelete/${post.talk_no}'">
+                                        삭제
+                                </button></td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -56,6 +60,7 @@
                                 <th>댓글</th>
                                 <th>대댓글수</th>
                                 <th>작성일</th>
+                                <th>삭제</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -65,6 +70,9 @@
                                     <td onclick="location.href='/board/${comment.talk_no}'"><c:out value="${comment.comment_content}"/></td>
                                     <td><c:out value="${comment.depth}"/></td>
                                     <td><c:out value="${comment.comment_date}"/> </td>
+                                    <td><button class="btn btn-primary" onclick="location.href='/mypage/comment/deleteComment/${comment.comment_id}'">
+                                        삭제
+                                    </button></td>
                                 </tr>
                             </c:forEach>
                             </tbody>
@@ -80,6 +88,8 @@
                                 <th>영화번호</th>
                                 <th>영화제목</th>
                                 <th>선택일</th>
+                                <th>그때생각</th>
+                                <th>삭제</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -87,8 +97,10 @@
                                 <tr>
                                     <td><c:out value="${wish.wish_no}"/></td>
                                     <td><c:out value="${wish.movie_no}"/></td>
-                                    <td onclick="location.href='/board/${wish.movie_name}'"><c:out value="${comment.comment_content}"/></td>
+                                    <td onclick="location.href='#'"><c:out value="${wish.movie_name}"/></td>
                                     <td><c:out value="${wish.add_date}"/> </td>
+                                    <td><button  class="btn btn-primary" onclick="location.href=''">코멘트적기</button></td>
+                                    <td><button  class="btn btn-primary" onclick="location.href=''">삭제</button></td>
                                 </tr>
                             </c:forEach>
                             </tbody>

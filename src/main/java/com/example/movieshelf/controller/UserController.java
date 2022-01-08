@@ -47,6 +47,10 @@ public class UserController {
         return service.updateUser(code , userRequestDto);
     }
 
+//    public User correctUser(){
+//        service.
+//    }
+
     // 4.Delete
     @DeleteMapping("/user/delete/{code}")
     public int deleteUser(@PathVariable int code){
