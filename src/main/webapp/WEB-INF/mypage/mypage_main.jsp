@@ -17,7 +17,6 @@
             <button onclick="location.href='/main/mypage/1'">게시글</button>
             <button onclick="location.href='/main/mypage/2'">댓글</button>
             <button onclick="location.href='/main/mypage/3'">위시리스트</button>
-
             <section>
                 <div class="small text-muted">MovieShelf</div>
                 <c:choose>
@@ -100,7 +99,7 @@
                                     <td onclick="location.href='#'"><c:out value="${wish.movie_name}"/></td>
                                     <td><c:out value="${wish.add_date}"/> </td>
                                     <td><button  class="btn btn-primary" onclick="location.href=''">코멘트적기</button></td>
-                                    <td><button  class="btn btn-primary" onclick="location.href=''">삭제</button></td>
+                                    <td><button  class="btn btn-primary" onclick="location.href='/mypage/wishList/deleteWish/${wish.wish_no}'">삭제</button></td>
                                 </tr>
                             </c:forEach>
                             </tbody>

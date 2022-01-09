@@ -21,7 +21,19 @@
         <c:set var="comments" value="${requestScope.comments}" scope="page"/>
         <c:set var="plusComment" value="${requestScope.plusComment}" scope="page"/>
 
-        <table class="boardList" border="1" width="500px">
+        <table class="type22">
+            <tbody>
+            <tr>
+                <td rowspan="4">
+                    <img src="${post.movie_poster}"/>
+                </td>
+            </tr>
+            <tr>
+                <th>영화명 :</th>
+                <td colspan="3">
+                    <span id="movieText"><c:out value="${post.movie_name}"/></span>
+                </td>
+            </tr>
             <tr>
                 <td>제목</td>
                 <td><c:out value="${post.talk_title}"/></td>
@@ -49,24 +61,18 @@
         </c:if>
         <%-- 로그인 되어있고 아이디 같으면 => 수정/삭제--%>
         <c:if test="${log != null && log.user_id.equals(post.user_id)}">
-            <button onclick="location.href='${pageContext.request.contextPath}/boardUpdateForm/${post.talk_no}'">게시글
+            <button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/boardUpdateForm/${post.talk_no}'">게시글
                 수정
             </button>
-            <button onclick="location.href='${pageContext.request.contextPath}/boardDelete/${post.talk_no}'">게시글
+            <button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/boardDelete/${post.talk_no}'">게시글
                 삭제
             </button>
         </c:if>
-        <%-- 로그인 되어있으면 => 댓글달기(자기 게시물도 가능)--%>
-        <c:if test="${log != null}">
-            <form action="/board/comment/addComment/${post.talk_no}">
-                <input type="text" name="comment" id="comment" placeholder="댓글" required/>
-                <input type="submit" value="댓글달기"/>
-            </form>
-        </c:if>
+
         <table class="comments">
             <tr>
-                <td>작성자</td>
-                <td width="200px">댓글</td>
+                <td width="200px">작성자</td>
+                <td width="300px">댓글</td>
                 <td>@</td>
                 <td>+</td>
                 <td>-</td>
@@ -84,7 +90,7 @@
                             &nbsp;<td>ㄴ<c:out value="${comment.user_id}"/></td>
                             <form action="/board/comment/setPlusComment/${post.talk_no}/${comment.comment_id}">
                                 <td><input type="text" name="plusComment" id="plusComment"></td>
-                                <td><input type="submit" value="작성"></td>
+                                <td><input class="btn btn-primary" type="submit" value="작성"></td>
                             </form>
                         </c:when>
 
@@ -99,12 +105,12 @@
                     <c:choose>
                         <c:when test="${log != null && log.user_id.equals(comment.user_id)}">
                             <td>
-                                <button onclick="location.href='/board/${post.talk_no}/updateComment/${comment.comment_id}'">
+                                <button class="btn btn-primary" onclick="location.href='/board/${post.talk_no}/updateComment/${comment.comment_id}'">
                                     수정
                                 </button>
                             </td>
                             <td>
-                                <button onclick="location.href='/board/comment/deleteComment/${comment.comment_id}'">
+                                <button class="btn btn-primary" onclick="location.href='/board/comment/deleteComment/${comment.comment_id}'">
                                     삭제
                                 </button>
                             </td>
@@ -117,6 +123,13 @@
                 </tr>
             </c:forEach>
         </table>
+        <%-- 로그인 되어있으면 => 댓글달기(자기 게시물도 가능)--%>
+        <c:if test="${log != null}">
+            <form action="/board/comment/addComment/${post.talk_no}">
+                <input type="text" name="comment" id="comment" placeholder="댓글" required/>
+                <input class="btn btn-primary" type="submit" value="댓글달기"/>
+            </form>
+        </c:if>
     </section>
 </main>
 

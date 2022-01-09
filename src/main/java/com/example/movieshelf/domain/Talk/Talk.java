@@ -20,7 +20,7 @@ public class Talk {
 
     @NonNull
     @Column
-    private String user_id,talk_title, talk_content,talk_password;
+    private String user_id,talk_title, talk_content,talk_password, movie_name, movie_poster;
     private Timestamp talk_regdate;
 
     @Column
@@ -34,6 +34,8 @@ public class Talk {
         this.talk_content = talkRequestDTO.getTalk_content();
         this.talk_likes = talkRequestDTO.getTalk_likes();
         this.talk_regdate = talkRequestDTO.getTalk_regdate();
+        this.movie_name = talkRequestDTO.getMovie_name();
+        this.movie_poster = talkRequestDTO.getMovie_poster();
     }
 
     public void update(TalkRequestDTO talkRequestDTO){

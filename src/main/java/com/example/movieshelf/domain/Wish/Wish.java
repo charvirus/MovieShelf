@@ -30,5 +30,7 @@ public class Wish {
         this.user_id = wishRequestDTO.getUser_id();
         this.movie_name = wishRequestDTO.getMovie_name();
         this.add_date = wishRequestDTO.getAdd_date();
+//        이미지 태그
+//        스트링 코멘트
     }
 }

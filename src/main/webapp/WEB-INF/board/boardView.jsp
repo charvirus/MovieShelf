@@ -20,8 +20,20 @@
         <h2>게시글</h2>
         <hr>
 
-        <table class="type22" width="500px">
+        <table class="type22">
             <tbody>
+            <tr>
+                <td rowspan="4">
+                    <img src="${post.movie_poster}"/>
+                </td>
+            </tr>
+            <tr>
+                <th>영화명 :</th>
+                <td colspan="3">
+                    <span id="movieText"><c:out value="${post.movie_name}"/></span>
+                </td>
+            </tr>
+
             <tr>
                 <th>제목</th>
                 <td><c:out value="${post.talk_title}"/></td>
@@ -57,23 +69,14 @@
                 삭제
             </button>
         </c:if>
-        <%-- 로그인 되어있으면 => 댓글달기(자기 게시물도 가능)--%>
-        <c:if test="${log != null}">
-        <div class="input-group">
-        <form action="/board/comment/addComment/${post.talk_no}">
-                <input type="text" name="comment" id="comment" class="form-control" aria-describedby="button-search" placeholder="댓글" required/>
-                <input class="btn btn-primary" type="submit" value="댓글달기"/>
-            </form>
-        </div>
-        </c:if>
 
-        <br>
+        <hr>
 
         <table class="comments">
             <thead>
             <tr>
-                <th>작성자</th>
-                <th width="200px">댓글</th>
+                <th width="200px">작성자</th>
+                <th width="300px">댓글</th>
                 <th>@</th>
                 <th>+</th>
                 <th>-</th>
@@ -122,6 +125,13 @@
             </c:forEach>
             </tbody>
         </table>
+        <%-- 로그인 되어있으면 => 댓글달기(자기 게시물도 가능)--%>
+        <c:if test="${log != null}">
+                <form action="/board/comment/addComment/${post.talk_no}">
+                    <input type="text" name="comment" id="comment" class="form-control" placeholder="댓글" required/>
+                    <input class="btn btn-primary" type="submit" value="댓글달기"/>
+                </form>
+        </c:if>
     </section>
 </main>
 <c:import url="../footer_.jsp"></c:import>

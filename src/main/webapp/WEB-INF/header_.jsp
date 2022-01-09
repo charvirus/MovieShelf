@@ -13,7 +13,6 @@
     <link href="/css/styles.css" rel="stylesheet" />
     <link href="/css/tablestyle.css" rel="stylesheet" />
 
-
     <title>MovieShelf</title>
 </head>
 <body>

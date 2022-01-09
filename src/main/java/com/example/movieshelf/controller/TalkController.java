@@ -4,6 +4,7 @@ import com.example.movieshelf.domain.Talk.Talk;
 import com.example.movieshelf.domain.Talk.TalkRequestDTO;
 import com.example.movieshelf.service.TalkService.TalkService;
 import lombok.RequiredArgsConstructor;
+import org.json.simple.JSONArray;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -53,4 +54,5 @@ public class TalkController {
     public int deleteTalk(@PathVariable int talk_no){
         return service.deleteTalk(talk_no);
     }
+
 }

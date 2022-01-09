@@ -47,11 +47,11 @@ function printResult(movies) {
                     <td>${moviePubDate}</td>
                     <td>${movieDirector}</td>
                     <td>${movieUserRating}</td>
-                     <td><center>
+                     <td>
                             <button onClick="location.href='/addWishFromSearch/${movieTitleReplaced}'">
                                 나중에 볼 영화 찜하기
                             </button>
-                        </center>
+                        
                     </td>
                 </tr>
             </tbody>

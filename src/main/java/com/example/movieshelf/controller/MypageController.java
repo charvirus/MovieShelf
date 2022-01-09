@@ -142,5 +142,18 @@ public class MypageController {
         return comments;
     }
 
+    @GetMapping("/mypage/wishList/deleteWish/{wish_no}")
+    public void deletewish(@PathVariable int wish_no, HttpServletRequest request, HttpServletResponse response) throws IOException{
+        HttpSession session =request.getSession(false);
+
+        User user = (User) session.getAttribute("log");
+        Wish wish = wc.getWish(wish_no);
+
+        if(user != null && user.getUser_id().equals(wish.getUser_id())){
+            int delNum = wc.deleteWish(wish_no);
+        }
+        response.sendRedirect("/main/mypage/3");
+    }
+
 
 }
