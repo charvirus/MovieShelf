@@ -99,7 +99,7 @@
                                     <td onclick="location.href='#'"><c:out value="${wish.movie_name}"/></td>
                                     <td><c:out value="${wish.add_date}"/> </td>
                                     <td><button  class="btn btn-primary" onclick="location.href=''">코멘트적기</button></td>
-                                    <td><button  class="btn btn-primary" onclick="location.href=''">삭제</button></td>
+                                    <td><button  class="btn btn-primary" onclick="location.href='/mypage/wishList/deleteWish/${wish.wish_no}'">삭제</button></td>
                                 </tr>
                             </c:forEach>
                             </tbody>
