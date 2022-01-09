@@ -21,7 +21,19 @@
         <c:set var="comments" value="${requestScope.comments}" scope="page"/>
         <c:set var="updateComment" value="${requestScope.updateComment}" scope="page"/>
 
-        <table class="boardList" border="1" width="500px">
+        <table class="type22">
+            <tbody>
+            <tr>
+                <td rowspan="4">
+                    <img src="${post.movie_poster}"/>
+                </td>
+            </tr>
+            <tr>
+                <th>영화명 :</th>
+                <td colspan="3">
+                    <span id="movieText"><c:out value="${post.movie_name}"/></span>
+                </td>
+            </tr>
             <tr>
                 <td>제목</td>
                 <td><c:out value="${post.talk_title}"/></td>
@@ -63,7 +75,7 @@
                 <input type="submit" value="댓글달기"/>
             </form>
         </c:if>
-        <table class="comments">
+        <table class="type22">
             <tr>
                 <td>작성자</td>
                 <td width="200px">댓글</td>

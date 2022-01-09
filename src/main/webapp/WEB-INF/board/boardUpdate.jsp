@@ -20,7 +20,19 @@
             <input type="hidden">
             <c:set var="post" value="${requestScope.post}" scope="request"/>
 
-            <table class="boardList" border="1" width="500px">
+            <table class="type22">
+                <tbody>
+                <tr>
+                    <td rowspan="4">
+                        <img src="${post.movie_poster}"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th>영화명 :</th>
+                    <td colspan="3">
+                        <span id="movieText"><c:out value="${post.movie_name}"/></span>
+                    </td>
+                </tr>
                 <tr>
                     <td>제목</td>
                     <td>

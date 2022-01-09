@@ -68,30 +68,44 @@ public class MovieRestController {
         headers.add("X-Naver-Client-Id", "IHlnAD4_LEMbS_rg0qbb");
         headers.add("X-Naver-Client-Secret", "9sDt2YKXk3");
         String body = "";
+
         HttpEntity<String> requestEntity = new HttpEntity<String>(body, headers);
-        ResponseEntity<String> responseEntity = rest.exchange("https://openapi.naver.com/v1/search/movie.json?query=" + name, HttpMethod.GET, requestEntity, String.class);
+        ResponseEntity<String> responseEntity = rest.exchange("https://openapi.naver.com/v1/search/movie.json?query="+name, HttpMethod.GET, requestEntity, String.class);
         HttpStatus httpStatus = responseEntity.getStatusCode();
         JSONParser jsonParser = new JSONParser(); //  문자열을 Json 형식에 맞게 Object로 파싱할 수 있는 Parser를 생성
         int status = httpStatus.value();
         String response = responseEntity.getBody();
         Object obj = jsonParser.parse(response); // jsonParser를 통해 Json 문자열을 Object 형식으로 파싱
         JSONObject jsonObj = (JSONObject) obj; // Object 형식의 데이터를 JSONObject 형식으로 형변환
-
-        JSONArray jsonArr = (JSONArray) jsonObj.get("items");
-        for (int i = 0; i < jsonArr.size(); i++) {
-            JSONObject jsonObj2 = (JSONObject) jsonArr.get(i);
-
-            String bbbb = (String) jsonObj2.get("title");
-            String cccc = (String) jsonObj2.get("link");
-
-            String dddd = (String) jsonObj2.get("image");
-
-            System.out.println(bbbb);
-            System.out.println(cccc);
-            System.out.println(dddd);
-        }
-
+        System.out.println("Response status: " + status);
+        System.out.println(jsonObj);
 
         return jsonObj;
+    }
+
+    @GetMapping("/searchResult/{name}")
+    public List<APIRequestDTO> getSearchListResult(@PathVariable String name) throws ParseException {
+        List<APIRequestDTO> searchResult = null;
+        RestTemplate rest = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("X-Naver-Client-Id", "IHlnAD4_LEMbS_rg0qbb");
+        headers.add("X-Naver-Client-Secret", "9sDt2YKXk3");
+        String body = "";
+
+        HttpEntity<String> requestEntity = new HttpEntity<String>(body, headers);
+        ResponseEntity<String> responseEntity = rest.exchange("https://openapi.naver.com/v1/search/movie.json?query="+name, HttpMethod.GET, requestEntity, String.class);
+        HttpStatus httpStatus = responseEntity.getStatusCode();
+        JSONParser jsonParser = new JSONParser(); //  문자열을 Json 형식에 맞게 Object로 파싱할 수 있는 Parser를 생성
+        int status = httpStatus.value();
+        String response = responseEntity.getBody();
+        Object obj = jsonParser.parse(response); // jsonParser를 통해 Json 문자열을 Object 형식으로 파싱
+        JSONObject jsonObj = (JSONObject) obj; // Object 형식의 데이터를 JSONObject 형식으로 형변환
+        JSONObject items = (JSONObject) jsonObj.get("items");
+
+        System.out.println("Response status: " + status);
+        System.out.println(jsonObj);
+
+
+        return searchResult;
     }
 }

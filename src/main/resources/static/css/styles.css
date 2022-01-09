@@ -11286,3 +11286,22 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
+
+
+/*.boardWriteSec{*/
+/*  display: grid;*/
+/*  grid-template:*/
+/*  "arti1" 1fr*/
+/*  "arti2" 2fr*/
+/*  ;*/
+/*}*/
+
+/*.arti1{*/
+/*  grid-area: arti1;*/
+/*}*/
+/*.arti2{*/
+/*  grid-area: arti2;*/
+/*}*/
+
+
+

@@ -3,6 +3,8 @@ table.type22 {
     text-align: left;
     line-height: 1.5;
 
+    /*margin-left: 10vw;*/
+    /*margin-right: 10vw;*/
 }
 table.type22 thead th {
     padding: 10px;

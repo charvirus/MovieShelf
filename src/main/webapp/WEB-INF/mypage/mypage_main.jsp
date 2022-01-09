@@ -17,7 +17,6 @@
             <button onclick="location.href='/main/mypage/1'">게시글</button>
             <button onclick="location.href='/main/mypage/2'">댓글</button>
             <button onclick="location.href='/main/mypage/3'">위시리스트</button>
-
             <section>
                 <div class="small text-muted">MovieShelf</div>
                 <c:choose>
