@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -30,6 +31,19 @@ public class MovieRestController {
     public Movie getMovie(@PathVariable int code) {
         return service.getMovie(code);
     }
+
+    @GetMapping("/movie/getMovie/{movie_no}")
+    public ArrayList<Movie> getMovieNoList(@PathVariable int movie_no){
+        List<Movie> movies = service.getMovies();
+        ArrayList<Movie> sendMovies = new ArrayList<Movie>();
+        for(Movie m : movies){
+            if(m.getMovie_no() == movie_no){
+                sendMovies.add(m);
+            }
+        }
+        return sendMovies;
+    }
+
 
     @GetMapping("/movie/getMovies")
     public List<Movie> getMovies() {

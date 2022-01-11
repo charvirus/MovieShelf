@@ -1,5 +1,7 @@
 package com.example.movieshelf.service.WishService;
 
+import com.example.movieshelf.domain.User.User;
+import com.example.movieshelf.domain.User.UserRequestDTO;
 import com.example.movieshelf.domain.Wish.Wish;
 import com.example.movieshelf.domain.Wish.WishRepository;
 import com.example.movieshelf.domain.Wish.WishRequestDTO;
@@ -24,6 +26,14 @@ public class WishService {
                 // 람다식
                 () -> new IllegalArgumentException("존재하지 않는 위시리스트입니다.")
         );
+    }
+
+    // 3.Update
+    @Transactional // 기존의 테이블에 쿼리가 일어나야함을 알려줌
+    public Wish updateWish(int wish_no, WishRequestDTO wishRequestDTO) {
+        Wish wish = getWish(wish_no);
+        wish.update(wishRequestDTO);
+        return wish;
     }
 
     public List<Wish> getWishes(){

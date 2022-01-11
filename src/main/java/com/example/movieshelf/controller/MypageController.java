@@ -2,9 +2,12 @@ package com.example.movieshelf.controller;
 
 import com.example.movieshelf.domain.Comment.Comment;
 import com.example.movieshelf.domain.Comment.CommentRequestDTO;
+import com.example.movieshelf.domain.Movie.Movie;
 import com.example.movieshelf.domain.Talk.Talk;
+import com.example.movieshelf.domain.Talk.TalkRequestDTO;
 import com.example.movieshelf.domain.User.User;
 import com.example.movieshelf.domain.Wish.Wish;
+import com.example.movieshelf.domain.Wish.WishRequestDTO;
 import com.example.movieshelf.service.UserService.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -27,20 +30,23 @@ public class MypageController {
     private final CommentController cc;
     private final TalkController tc;
     private final WishController wc;
+    private final MovieRestController mrc;
     private final UserService us;
 
-    @GetMapping("mypage")
+    @GetMapping("/mypage")
     public String getMypageCheck(HttpServletRequest request){
         HttpSession session = request.getSession(false);
         User user = (User)session.getAttribute("log");
         if(user == null){
             return "/sign/login.jsp";
         }
-        return "/mypage/mypage_check.jsp";
+        return "/mypage/mypage_update.jsp";
     }
 
     @GetMapping("/main/mypage/update")
-    public String update(){return "/mypage/mypage_update.jsp";}
+    public String mypageUpdate(){
+        return "/mypage/mypage_update.jsp";
+    }
 
     @GetMapping("/main/mypage/{page_no}")
     public String mypage(@PathVariable int page_no, HttpServletRequest request) {
@@ -64,18 +70,6 @@ public class MypageController {
         return "/mypage/mypage_main.jsp";
     }
 
-    @GetMapping("/main/Identification")
-    public String mypageCheck(HttpServletRequest request){
-        HttpSession session = request.getSession(false);
-        User user = (User)session.getAttribute("log");
-        user = us.getUserById(user.getUser_id());
-        String pwC = request.getParameter("pwC");
-
-        if(user.getUser_pw().equals(pwC)){
-            return "/mypage/mypage_main.jsp";
-        }
-        return "/mypage/mypage_check.jsp";
-    }
 
     @GetMapping("/mypage/boardDelete/{talk_no}")
     public void deletePost(@PathVariable int talk_no, HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -158,5 +152,19 @@ public class MypageController {
         response.sendRedirect("/main/mypage/3");
     }
 
+    @GetMapping("/CommentWrite/{movie_no}")
+    public String writeForm(@PathVariable int movie_no, HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+
+        // 영화 리스트
+        ArrayList<Movie> movieArr = mrc.getMovieNoList(movie_no);
+        request.setAttribute("mra", movieArr);
+
+      return "/mypage/mypage_comment.jsp";
+    }
+
+
+
+    }
 
 }
