@@ -19,33 +19,36 @@
             <div class="small text-muted">MovieShelf</div>
             <h2>영화 게시판</h2>
             <hr>
-            <table class="type22">
-                <thead>
-                <tr>
-                    <th>포스터</th>
-                    <th>영화명</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>좋아요</th>
-                    <th>작성일</th>
-                </tr>
-                </thead>
-                <tbody>
-                <c:forEach var="post" items="${boardList}">
-                    <tr>
-                        <td><img src="${post.movie_poster}"/></td>
-                        <td><c:out value="${post.movie_name}"/></td>
-                        <td onclick="location.href='/board/${post.talk_no}'"><c:out
-                                value="${post.talk_title}"/></td>
-                        <td><c:out value="${post.user_id}"/></td>
-                        <td><c:out value="${post.talk_likes}"/></td>
-                        <td><c:out value="${post.talk_regdate}"/></td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table><br>
+            <div class="contentContainer">
+                <table class="type22">
+
+                    <tbody>
+                    <c:forEach var="post" items="${boardList}">
+                        <tr>
+                            <td  rowspan="4"><img src="${post.movie_poster}"/></td>
+                        </tr>
+                        <tr>
+                            <td onclick="location.href='/board/${post.talk_no}'"><c:out
+                                    value="${post.talk_title}"/></td>
+                        </tr>
+                        <tr>
+                            <td>작성자 : <c:out value="${post.user_id}"/> | 👍 <c:out value="${post.talk_likes}"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><c:out value="${post.talk_regdate}"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><c:out value="${post.movie_name}"/></td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
+            <br>
             <c:if test="${log != null}">
-                <button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/boardWriteForm'">글작성</button>
+                <button class="btn btn-primary"
+                        onclick="location.href='${pageContext.request.contextPath}/boardWriteForm'">글작성
+                </button>
             </c:if>
             <br>
         </article>

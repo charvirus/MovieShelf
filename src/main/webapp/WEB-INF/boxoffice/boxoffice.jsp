@@ -18,16 +18,7 @@
             <hr>
             <div class="contentContainer">
             <table class="type22" id="boxOffice" >
-                <thead>
-                <tr id="boxOfficeHeader">
-                    <th>순위</th>
-                    <th>포스터</th>
-                    <th>영화명</th>
-                    <th>개봉일</th>
-                    <th>일일 관객수</th>
-                    <th>누적 관객</th>
-                </tr>
-                </thead>
+
             </table>
             </div>
         </section>

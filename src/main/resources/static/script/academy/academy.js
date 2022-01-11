@@ -94,7 +94,7 @@ function getMovies(movies) {
                 <tbody>
                     <tr>
                         <td rowspan="4"><img src="${movie_poster}"/></td>
-                        <td><a href="${movie_link}">${movie_name}</a> | 장르 ${movie_genre}</td>
+                        <td><a href="${movie_link}">${movie_name}</a> | 장르 : ${movie_genre}</td>
                         <td class="addWish">
                             <button class="btn btn-primary" onClick="location.href='/addWishFromAca/${movie_no}'">
                                 +

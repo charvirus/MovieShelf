@@ -101,13 +101,15 @@ function getFullData(){
             `
 				<tbody>
 				<tr>
-				<td>${e.rank}</td>
-                <td><img src="${e.image}"></td>
-				<td>${e.title} </td>
-				<td>${e.openDate}</td>
-				<td>${e.audiCnt}</td>
-				<td>${e.totalAudiCnt}</td>
+                    <td rowspan="3">${e.rank}</td>
+                    <td rowspan="3"><img src="${e.image}"></td>
 				</tr>
+				<tr>
+				    <td>${e.title} | ${e.openDate}</td>
+				</tr>
+				<tr>
+				    <td>+ ${e.audiCnt} | ${e.totalAudiCnt} </td>
+                </tr>
 				</tbody>
 			`
         );
