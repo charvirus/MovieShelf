@@ -20,10 +20,12 @@ public class Movie {
 
     @NonNull
     @Column
-    private String movie_name, movie_genre, movie_director, movie_mainactor;
+    private String movie_name, movie_genre, movie_director, movie_mainactor, movie_poster,
+            movie_link;
     private int movie_time;
     private float movie_score;
     private Timestamp movie_reldate;
+
 
     public Movie(MovieRequestDTO movieRequestDTO) {
         this.movie_no = movieRequestDTO.getMovie_no();
@@ -34,6 +36,8 @@ public class Movie {
         this.movie_time = movieRequestDTO.getMovie_time();
         this.movie_score = movieRequestDTO.getMovie_score();
         this.movie_reldate = movieRequestDTO.getMovie_reldate();
+        this.movie_poster = movieRequestDTO.getMovie_poster();
+        this.movie_link = movieRequestDTO.getMovie_link();
     }
 
     public void update(MovieRequestDTO movieRequestDTO) {
@@ -42,9 +46,10 @@ public class Movie {
         this.movie_genre = movieRequestDTO.getMovie_genre();
         this.movie_director = movieRequestDTO.getMovie_director();
         this.movie_mainactor = movieRequestDTO.getMovie_mainactor();
-        this.movie_score=movieRequestDTO.getMovie_score();
+        this.movie_score = movieRequestDTO.getMovie_score();
+        this.movie_poster = movieRequestDTO.getMovie_poster();
+        this.movie_link = movieRequestDTO.getMovie_link();
     }
-
 
 
 }

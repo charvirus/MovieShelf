@@ -79,6 +79,7 @@ function getMovies(movies) {
         `
         <thead>
         <tr>
+            <th>포스터</th>
             <th>제목</th>
             <th>개봉일</th>
             <th>상영 시간</th>
@@ -91,10 +92,12 @@ function getMovies(movies) {
     let image = "";
     let link = "";
     movies.forEach(e => {
+        const movie_poster = e.movie_poster;
         const movie_no = e.movie_no;
         const movie_director = e.movie_director;
         const movie_mainactor = e.movie_mainactor;
         const movie_name = e.movie_name;
+        const movie_link = e.movie_link;
         const movie_score = e.movie_score;
         const movie_reldate = e.movie_reldate;
         const movie_time = e.movie_time;
@@ -105,7 +108,8 @@ function getMovies(movies) {
                 `
                   <tbody>
                     <tr>
-                        <td>${movie_name}</td>
+                        <td><img src="${movie_poster}"/></td>
+                        <td><a href="${movie_link}">${movie_name}</a></td>
                         <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</center></td>
                         <td>${movie_time}</td>
                         <td>${movie_score}</td>
@@ -123,7 +127,8 @@ function getMovies(movies) {
                 `
                 <tbody>
                 <tr>
-                    <td>${movie_name}</td>
+                    <td><img src="${movie_poster}"/></td>
+                    <td><a href="${movie_link}">${movie_name}</a></td>
                     <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</td>
                     <td>${movie_time}</td>
                     <td>${movie_score}</td>

@@ -38,12 +38,7 @@
         </script>
         <c:remove var="logError" scope="session"/>
     </c:when>
-    <c:when test="${logPlz == 1}">
-        <script>
-            alert("로그인 후 사용 가능합니다");
-        </script>
-        <c:remove var="logPlz" scope="session"/>
-    </c:when>
+
 </c:choose>
 <c:import url="../footer_.jsp"></c:import>
 

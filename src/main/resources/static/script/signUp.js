@@ -66,7 +66,6 @@ function checkUserId(idValue) {
         data: JSON.stringify(data)
     }).done(response => {
         pId.innerHTML = "이미 사용중이거나 탈퇴한 회원입니다.";
-        checkDuplicate = false;
     })
         .fail(function () {
             if (idValue == "") {
