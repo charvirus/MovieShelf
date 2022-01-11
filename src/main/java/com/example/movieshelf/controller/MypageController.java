@@ -151,6 +151,9 @@ public class MypageController {
 
         if(user != null && user.getUser_id().equals(wish.getUser_id())){
             int delNum = wc.deleteWish(wish_no);
+            List<Wish> wishCountlist = wc.getWishes(user.getUser_id());
+            int wishCount = wishCountlist.size();
+            session.setAttribute("wishCount",wishCount);
         }
         response.sendRedirect("/main/mypage/3");
     }

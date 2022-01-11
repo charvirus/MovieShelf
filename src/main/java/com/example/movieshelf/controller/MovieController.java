@@ -23,7 +23,7 @@ import java.util.List;
 public class MovieController {
     private final MovieService movieService;
     private final WishService wishService;
-
+    private final WishController wc;
     @GetMapping("/academy")
     public String getAcademyMovies(HttpServletRequest request) {
         HttpSession session = request.getSession();
@@ -58,6 +58,9 @@ public class MovieController {
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 WishRequestDTO dto = new WishRequestDTO(user.getUser_id(), code, getMovie.getMovie_name(),timestamp);
                 wishService.addWish(dto);
+                List<Wish> wishCountlist = wc.getWishes(user.getUser_id());
+                int wishCount = wishCountlist.size();
+                session.setAttribute("wishCount",wishCount);
             }
             response.sendRedirect("/academy");
         }

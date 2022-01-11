@@ -29,8 +29,13 @@
                 <li class="nav-item"><a class="nav-link" href="/search">영화 검색</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="/mypage">마이페이지</a></li>
                 <c:set var="ses" value="${sessionScope.log}"/>
+                <c:set var="wishCount" value="${sessionScope.wishCount}"/>
+
                 <c:choose>
                     <c:when test="${ses != null}">
+                        <c:if test="${wishCount != 0}">
+                            <li class="nav-link"><a href="/main/mypage/3" id="wishBox"><c:out value="${wishCount}"/></a></li>
+                        </c:if>
                         <li class="nav-link active" aria-current="page">${ses.getUser_nickname()}님</li>
                         <li class="nav-item"><a class="nav-link" href="/logout">로그아웃</a></li>
                     </c:when>
