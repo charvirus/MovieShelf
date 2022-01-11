@@ -1,8 +1,26 @@
+#academyRadio{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#academyRadio ul{
+    list-style:none;
+}
+#academyRadio ul li{
+    float: left;
+    margin-right: 10px;
+}
+
+.contentContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 table.type22 {
     border-collapse: collapse;
     text-align: left;
     line-height: 1.5;
-
     /*margin-left: 10vw;*/
     /*margin-right: 10vw;*/
 }
@@ -22,8 +40,11 @@ table.type22 tbody th {
     background: #f3f6f7;
 }
 table.type22 td {
-    width: 350px;
     padding: 10px;
     vertical-align: top;
     border-bottom: 1px solid #ccc;
+}
+
+.addWish{
+    border-bottom: none;
 }

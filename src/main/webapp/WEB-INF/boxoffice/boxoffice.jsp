@@ -16,6 +16,7 @@
             <div class="small text-muted">MovieShelf</div>
             <h2>박스오피스 TOP 10</h2>
             <hr>
+            <div class="contentContainer">
             <table class="type22" id="boxOffice" >
                 <thead>
                 <tr id="boxOfficeHeader">
@@ -28,6 +29,7 @@
                 </tr>
                 </thead>
             </table>
+            </div>
         </section>
     </main>
 <script type="text/javascript" src="script/boxOffice/boxOffice.js"></script>

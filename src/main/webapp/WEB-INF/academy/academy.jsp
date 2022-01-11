@@ -15,11 +15,11 @@
 <div class="small text-muted">MovieShelf</div>
 <h2>아카데미 작품상 수상작</h2>
 <hr>
-<div>
+<div id="academyRadio">
     <ul>
-        <p class="card-text"><li><input type="radio" id="r1" name="academy" checked>연도별</li></p>
-        <p class="card-text"><li><input type="radio" id="r2" name="academy">점수별</li></p>
-        <p class="card-text"><li><input type="radio" id="r3" name="academy">상영시간별</li></p>
+        <li><input type="radio" id="r1" name="academy" checked>연도별</li>
+        <li><input type="radio" id="r2" name="academy">점수별</li>
+        <li><input type="radio" id="r3" name="academy">상영시간별</li>
     </ul>
 </div>
 <main>

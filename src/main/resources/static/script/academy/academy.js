@@ -75,22 +75,6 @@ $("input#r3").click(function () {
 
 function getMovies(movies) {
     $("#movie").empty();
-    $("#movie").append(
-        `
-        <thead>
-        <tr>
-            <th>포스터</th>
-            <th>제목</th>
-            <th>개봉일</th>
-            <th>상영 시간</th>
-            <th>IMDB(점수)</th>
-            <th>감독/주연배우</th>
-        </tr>
-        </thead>
-        `
-    );
-    let image = "";
-    let link = "";
     movies.forEach(e => {
         const movie_poster = e.movie_poster;
         const movie_no = e.movie_no;
@@ -101,66 +85,56 @@ function getMovies(movies) {
         const movie_score = e.movie_score;
         const movie_reldate = e.movie_reldate;
         const movie_time = e.movie_time;
+        const movie_genre = e.movie_genre;
         const d = new Date(movie_reldate);
 
         if (session != "") {
             $("#movie").append(
                 `
-                  <tbody>
+                <tbody>
                     <tr>
-                        <td><img src="${movie_poster}"/></td>
-                        <td><a href="${movie_link}">${movie_name}</a></td>
-                        <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</center></td>
-                        <td>${movie_time}</td>
-                        <td>${movie_score}</td>
-                        <td>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</td>
-                        <td>
+                        <td rowspan="4"><img src="${movie_poster}"/></td>
+                        <td><a href="${movie_link}">${movie_name}</a> | 장르 ${movie_genre}</td>
+                        <td class="addWish">
                             <button class="btn btn-primary" onClick="location.href='/addWishFromAca/${movie_no}'">
-                                나중에 볼 영화 찜하기
+                                +
                             </button>
                         </td>
                     </tr>
-                </tbody>`
+                    <tr>
+                        <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()} | ${movie_time} 분</td>
+                    </tr>
+                    <tr>
+                        <td>IMDB 점수 : ${movie_score}</td>
+                    </tr>
+                    <tr>
+                        <td>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</td>
+                    </tr>
+                </tbody>
+            `
             );
         } else {
             $("#movie").append(
                 `
                 <tbody>
-                <tr>
-                    <td><img src="${movie_poster}"/></td>
-                    <td><a href="${movie_link}">${movie_name}</a></td>
-                    <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</td>
-                    <td>${movie_time}</td>
-                    <td>${movie_score}</td>
-                    <td>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</td>
-                </tr>
+                    <tr>
+                        <td rowspan="4"><img src="${movie_poster}"/></td>
+                        <td><a href="${movie_link}">${movie_name}</a> | 장르 ${movie_genre}</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()} | ${movie_time} 분</td>
+                    </tr>
+                    <tr>
+                        <td>IMDB 점수 : ${movie_score}</td>
+                    </tr>
+                    <tr>
+                        <td>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</td>
+                    </tr>
                 </tbody>
             `
             );
         }
     });
 
-}
-
-function getImage(title, date) {
-    $.ajax({
-        method: "get",
-        url: "/searchResultJson/" + title,
-        dataType: "json"
-    }).done(function (data) {
-        data.items.forEach(e => {
-
-            let tempTitle = e.title;
-
-            tempTitle = tempTitle.replace("<b>", "");
-            tempTitle = tempTitle.replace("</b>", "");
-
-            if (tempTitle === title && Number(e.pubDate) === date) {
-                console.log("일치");
-                console.log(tempTitle);
-                console.log(e.image);
-            }
-
-        });
-    })
 }
