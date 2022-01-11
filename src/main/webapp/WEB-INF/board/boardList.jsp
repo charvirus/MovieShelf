@@ -22,7 +22,8 @@
             <table class="type22">
                 <thead>
                 <tr>
-                    <th>번호</th>
+                    <th>포스터</th>
+                    <th>영화명</th>
                     <th>제목</th>
                     <th>작성자</th>
                     <th>좋아요</th>
@@ -32,7 +33,8 @@
                 <tbody>
                 <c:forEach var="post" items="${boardList}">
                     <tr>
-                        <td><c:out value="${post.talk_no}"/></td>
+                        <td><img src="${post.movie_poster}"/></td>
+                        <td><c:out value="${post.movie_name}"/></td>
                         <td onclick="location.href='/board/${post.talk_no}'"><c:out
                                 value="${post.talk_title}"/></td>
                         <td><c:out value="${post.user_id}"/></td>

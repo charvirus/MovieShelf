@@ -17,5 +17,6 @@ public class APIRequestDTO {
         this.director = director;
         this.actor = actor;
         this.userRating = userRating;
+
     }
 }

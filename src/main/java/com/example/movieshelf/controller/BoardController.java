@@ -107,12 +107,14 @@ public class BoardController {
         String content = request.getParameter("content");
         String pw = request.getParameter("pw");
 
-        // 로그인된 유저와 비교 및 실행
+        // 로그인된 유저와 비교, 빈칸 유효성 검사 및 실행
         if (user != null && user.getUser_id().equals(post.getUser_id()) && post.getTalk_password().equals(pw)) {
-            TalkRequestDTO talkRequestDTO = new TalkRequestDTO(post.getTalk_no(), post.getUser_id(), post.getTalk_password(), title, content, post.getTalk_likes(), post.getTalk_regdate(), post.getMovie_name(),  post.getMovie_poster());
-            post.update(talkRequestDTO);
-            tc.updateTalk(talk_no, talkRequestDTO);
-            System.out.println("게시글 수정 완료!\nUpdate Post Num: " + post.getTalk_no());
+            if(!title.equals("") && !content.equals("") && !pw.equals("")){
+                TalkRequestDTO talkRequestDTO = new TalkRequestDTO(post.getTalk_no(), post.getUser_id(), post.getTalk_password(), title, content, post.getTalk_likes(), post.getTalk_regdate(), post.getMovie_name(),  post.getMovie_poster());
+                post.update(talkRequestDTO);
+                tc.updateTalk(talk_no, talkRequestDTO);
+                System.out.println("게시글 수정 완료!\nUpdate Post Num: " + post.getTalk_no());
+            }
         }
         return this.post(post.getTalk_no(), request);
     }

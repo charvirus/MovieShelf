@@ -83,6 +83,7 @@ public class MovieRestController {
         return jsonObj;
     }
 
+
     @GetMapping("/searchResult/{name}")
     public List<APIRequestDTO> getSearchListResult(@PathVariable String name) throws ParseException {
         List<APIRequestDTO> searchResult = null;
@@ -104,7 +105,6 @@ public class MovieRestController {
 
         System.out.println("Response status: " + status);
         System.out.println(jsonObj);
-
 
         return searchResult;
     }

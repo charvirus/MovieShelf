@@ -128,7 +128,7 @@
         <%-- 로그인 되어있으면 => 댓글달기(자기 게시물도 가능)--%>
         <c:if test="${log != null}">
                 <form action="/board/comment/addComment/${post.talk_no}">
-                    <input type="text" name="comment" id="comment" class="form-control" placeholder="댓글" required/>
+                    <input type="text" name="comment" id="comment"   placeholder="댓글" required/>
                     <input class="btn btn-primary" type="submit" value="댓글달기"/>
                 </form>
         </c:if>

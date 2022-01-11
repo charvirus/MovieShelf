@@ -24,7 +24,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item"><a class="nav-link" href="/academy">아카데미 작품상 수상작</a></li>
-                <li class="nav-item"><a class="nav-link" href="/boxOffice">박스오피스 TOP10</a></li>
+                <li class="nav-item"><a class="nav-link" href="/boxOffice">한국 영화 순위 TOP10</a></li>
                 <li class="nav-item"><a class="nav-link" href="/boardList">영화 TalkTalk</a></li>
                 <li class="nav-item"><a class="nav-link" href="/search">영화 검색</a></li>
                 <li class="nav-item"><a class="nav-link active" aria-current="page" href="/mypage">마이페이지</a></li>

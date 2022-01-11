@@ -96,7 +96,6 @@
 
                         <c:when test="${log != null && comment.depth == 1 && comment.sort_no != plusComment.sort_no}">
                             &nbsp;<td>ㄴ<c:out value="${comment.user_id}"/></td>
-
                             <td><c:out value="${comment.comment_content}"/></td>
                             <td></td>
                         </c:when>
