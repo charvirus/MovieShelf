@@ -14,40 +14,38 @@
 <main>
     <section>
         <c:import url="boardView.jsp"/>
-        <c:set var="plusComment" value="${requestScope.plusComment}" scope="page"/>
 
         <table class="comments">
+            <thead>
             <tr>
-                <td width="200px">작성자</td>
-                <td width="300px">댓글</td>
-                <td>대댓글</td>
-                <td>수정</td>
-                <td>삭제</td>
+                <th width="200px">작성자</th>
+                <th width="300px">댓글</th>
+                <th width="100px">대댓글</th>
+                <th width="80px">수정</th>
+                <th width="80px">삭제</th>
             </tr>
+            </thead>
+            <tbody>
             <c:forEach var="comment" items="${comments}">
                 <tr>
                     <c:choose>
-                        <c:when test="${log != null && comment.depth == 0}">
+                        <c:when test="${ comment.depth == 0}">
                             <td><c:out value="${comment.user_id}"/></td>
                             <td><c:out value="${comment.comment_content}"/></td>
-                            <td></td>
+                            <c:if test="${log != null}">
+                                <td>
+                                    <button class="btn btn-primary" onclick="location.href='/board/comment/addPlusComment/${post.talk_no}/${comment.sort_no}/${comment.comment_id}'">
+                                        +
+                                    </button>
+                                </td>
+                            </c:if>
                         </c:when>
-                        <%-- comment comment_id가 받아온 객체(dto)와 같을 경우 내용 입력받음--%>
-                        <c:when test="${log != null && comment.depth == 1 && comment.sort_no == plusComment.sort_no}">
-                            &nbsp;<td>ㄴ<c:out value="${comment.user_id}"/></td>
-                            <form action="/board/comment/setPlusComment/${post.talk_no}/${comment.comment_id}">
-                                <td><input type="text" name="plusComment" id="plusComment"></td>
-                                <td><input class="btn btn-primary" type="submit" value="+"></td>
-                            </form>
-                        </c:when>
-
-                        <c:when test="${log != null && comment.depth == 1 && comment.sort_no != plusComment.sort_no}">
-                            &nbsp;<td>ㄴ<c:out value="${comment.user_id}"/></td>
+                        <c:when test="${comment.depth == 1}">
+                            &nbsp;&nbsp;&nbsp;&nbsp;<td class="plusCommentArea">ㄴ<c:out value="${comment.user_id}"/></td>
                             <td><c:out value="${comment.comment_content}"/></td>
                             <td></td>
                         </c:when>
                     </c:choose>
-
                     <c:choose>
                         <c:when test="${log != null && log.user_id.equals(comment.user_id)}">
                             <td>
@@ -68,19 +66,15 @@
                     </c:choose>
                 </tr>
             </c:forEach>
+            </tbody>
         </table>
         <%-- 로그인 되어있으면 => 댓글달기(자기 게시물도 가능)--%>
         <c:if test="${log != null}">
             <form action="/board/comment/addComment/${post.talk_no}">
-                <input type="text" name="comment" id="comment" placeholder="댓글" required/>
+                <input type="text" name="comment" id="comment"   placeholder="댓글" required/>
                 <input class="btn btn-primary" type="submit" value="댓글달기"/>
             </form>
         </c:if>
     </section>
 </main>
-
-<script>
-    document.getElementById("plusComment").focus();
-</script>
 <c:import url="../footer_.jsp"></c:import>
-

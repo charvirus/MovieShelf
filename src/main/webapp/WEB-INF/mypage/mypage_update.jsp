@@ -35,11 +35,11 @@
                     <input type="hidden" name="uNo" value="${log.user_no}">
                     <ul>
                         <li>아이디 : <c:out value="${log.user_id}"/></li>
-                        <li>비밀번호 : <input type="password" name="pw" id="pw"></li>
+                        <li>비밀번호 : <input class="form-control" type="password" name="pw" id="pw"></li>
                         <p id="pPw"></p>
-                        <li>이름 : <input type="text" name="name" id="name" value="${log.user_name}"></li>
+                        <li>이름 : <input class="form-control" type="text" name="name" id="name" value="${log.user_name}"></li>
                         <p id="pName"></p>
-                        <li>닉네임 : <input type="text" name="nick_name" id="nick_name" value="${log.user_nickname}"></li>
+                        <li>닉네임 : <input class="form-control" type="text" name="nick_name" id="nick_name" value="${log.user_nickname}"></li>
                         <p id="pNickname"></p>
                         <li>가입일자 : <c:out value="${log.user_regdate}"/></li>
                     </ul>

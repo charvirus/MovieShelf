@@ -116,7 +116,6 @@ public class MovieController {
                 return false;
             }
         }
-
         return true;
     }
 

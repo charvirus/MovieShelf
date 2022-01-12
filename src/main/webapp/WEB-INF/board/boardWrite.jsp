@@ -31,56 +31,62 @@
             </form>
 
             <form id="movieSelect" action="/boardWrite/choice">
-            <table class="type22">
-                <tr>
-                    <th>포스터</th>
-                    <th>제목</th>
-                    <th>감독</th>
-                </tr>
-                </thead>
-                    <input type="hidden" name="idxHidden" id="idxHidden" value=""/>
-                    <input type="hidden" name="searchWord" id="searchWord" value=""/>
-                <tbody id="searchResult">
+                <input type="hidden" name="idxHidden" id="idxHidden" value=""/>
+                <input type="hidden" name="searchWord" id="searchWord" value=""/>
+            <table class="table table--block--searchWrite" id="searchArea">
 
-                </tbody>
             </table>
             </form>
 
             <hr>
 
             <form id="write" method="post" action="/boardWrite">
-
-                <table class="type22">
+                <table class="table table--block--boardWrite">
                     <input name="moviePoster" type="hidden" value="${moviePoster}"/>
                     <input name="movieName" type="hidden" value="${movieName}"/>
+
                     <tr>
-                        <td rowspan="3">
-                            <img src="${moviePoster}"/>
-                        </td>
+                        <th style="width:10%">
+                            <c:choose>
+                                <c:when test="${moviePoster != ''}">
+                                    <img src="${moviePoster}"/>                                </c:when>
+                                <c:otherwise>
+                                    -
+                                </c:otherwise>
+                            </c:choose>
+
+                        </th>
                     </tr>
                     <tr>
-                        <th>영화명 :</th>
-                        <td>
-                            <span id="movieText"><c:out value="${movieName}"/></span>
-                        </td>
-                    </tr>
-                    <tr>
+                        <th>영화명</th>
                         <th>제목</th>
-                        <td colspan="3">
-                            <input name="title" id="title" type="text" placeholder="제목" required />
-                        </td>
                     </tr>
-                    <tr>
-                        <td height="500px" colspan="4">
-                             <textarea height="500px" name="content" id="content" required></textarea>
-                        </td>
-                    </tr>
+                    </thead>
+
+                    <tbody>
                     <tr>
                         <td>
-                            <span>post password: </span><input type="password" name="pw" id="pw">
+                            <c:choose>
+                                <c:when test="${movieName != null}">
+                                    <span id="movieText"><c:out value="${movieName}"/></span>
+                                </c:when>
+                                <c:otherwise>
+                                    영화를 선택하세요
+                                </c:otherwise>
+                            </c:choose>
                         </td>
+                        <td><input name="title" id="title" type="text" placeholder="제목을 입력하세요" class="form-control" aria-describedby="button-search" required/></td>
                     </tr>
+                    </tbody>
                 </table>
+
+                <textarea height="500px" name="content" id="content" required></textarea>
+                <hr>
+
+                <p width="200px">게시글 비밀번호: <input class="form-control" aria-describedby="button-search" type="password" name="pw" id="pw" placeholder="게시글 비밀번호 입력" ></p>
+
+
+
                 <input class="btn btn-primary" type="button" value="작성하기" id="submitButton" >
             </form>
         </article>

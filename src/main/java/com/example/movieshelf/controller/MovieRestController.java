@@ -91,8 +91,8 @@ public class MovieRestController {
         String response = responseEntity.getBody();
         Object obj = jsonParser.parse(response); // jsonParser를 통해 Json 문자열을 Object 형식으로 파싱
         JSONObject jsonObj = (JSONObject) obj; // Object 형식의 데이터를 JSONObject 형식으로 형변환
-        System.out.println("Response status: " + status);
-        System.out.println(jsonObj);
+//        System.out.println("Response status: " + status);
+//        System.out.println(jsonObj);
 
         return jsonObj;
     }

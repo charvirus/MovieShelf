@@ -29,6 +29,23 @@ function getMovie() {
 
 // 검색 값 별도 출력 및 링크
 function printResult(movies) {
+    $("#searchArea").empty();
+
+    $('#searchArea').append(
+        `
+            <thead>
+                <tr>
+                    <th style="width:10%">포스터</th>
+                    <th>제목</th>
+                    <th>감독</th>
+                </tr>
+            </thead>
+            <tbody id="searchResult">
+
+            </tbody>
+        `
+    );
+
     $("#searchResult").empty();
 
     let idx = 0; // 검색해서 나온 JSONArr의 인덱스와 맞추기 위함
@@ -43,8 +60,8 @@ function printResult(movies) {
         rMovieTitle = rMovieTitle.replace("</b>", "");
 
         $("#searchResult").append(
-            ` <tr class="selectMovie">
-                    <td> <img src="${moviePoster}" onclick=" movieSelectSubmit(${idx}) "> </td>
+            ` <tr class="selectMovie" onclick="movieSelectSubmit(${idx})">
+                    <td> ${isImage(moviePoster, idx)} </td>
                     <td> ${rMovieTitle} </td>
                     <td> ${director} </td>
                 </tr>`
@@ -52,6 +69,17 @@ function printResult(movies) {
         idx++;
     });
 }
+
+function isImage(moviePoster, idx){
+    console.log(idx);
+    if(moviePoster !== ""){
+        return `<img src="${moviePoster}" >`;
+    }
+    else{
+        return `<p>포스터 없음</p>`;
+    }
+}
+
 //  ${idx}, ${movieTitle}, ${moviePoster}
 // 값 저장 제출
 function movieSelectSubmit(idx){

@@ -91,47 +91,36 @@ function getMovies(movies) {
         if (session != "") {
             $("#movie").append(
                 `
-                <tbody>
                     <tr>
-                        <td rowspan="4"><img src="${movie_poster}"/></td>
-                        <td><a href="${movie_link}">${movie_name}</a> | 장르 : ${movie_genre}</td>
-                        <td class="addWish">
-                            <button class="btn btn-primary" onClick="location.href='/addWishFromAca/${movie_no}'">
+                        <td><img src="${movie_poster}"/></td>
+                        <td><a href="${movie_link}">${movie_name}</a></td>
+                        <td>${movie_genre}</td>
+                        <td>${movie_score}</td>
+                        <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</td>
+                        <td>${movie_time} 분</td>
+                        <td>${movie_director}</td>
+                        <td>${movie_mainactor}</td>
+                        <td>
+                            <button class="btn btn-primary" onclick="location.href='/addWishFromAca/${movie_no}'">
                                 +
                             </button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()} | ${movie_time} 분</td>
-                    </tr>
-                    <tr>
-                        <td>IMDB 점수 : ${movie_score}</td>
-                    </tr>
-                    <tr>
-                        <td>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</td>
-                    </tr>
-                </tbody>
             `
             );
         } else {
             $("#movie").append(
                 `
-                <tbody>
                     <tr>
-                        <td rowspan="4"><img src="${movie_poster}"/></td>
-                        <td><a href="${movie_link}">${movie_name}</a> | 장르 ${movie_genre}</td>
-                        
+                        <td><img src="${movie_poster}"/></td>
+                        <td><a href="${movie_link}">${movie_name}</a></td>
+                        <td>${movie_genre}</td>
+                        <td>${movie_score}</td>
+                        <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()}</td>
+                        <td>${movie_time} 분</td>
+                        <td>${movie_director}</td>
+                        <td>${movie_mainactor}</td>
                     </tr>
-                    <tr>
-                        <td>${d.getFullYear()}-${(d.getMonth() + 1)}-${d.getDate()} | ${movie_time} 분</td>
-                    </tr>
-                    <tr>
-                        <td>IMDB 점수 : ${movie_score}</td>
-                    </tr>
-                    <tr>
-                        <td>감독 : ${movie_director}<br/>주연 : ${movie_mainactor}</td>
-                    </tr>
-                </tbody>
             `
             );
         }

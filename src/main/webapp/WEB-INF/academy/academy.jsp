@@ -27,8 +27,25 @@
     <input type="hidden" value="${ses.getUser_id()}" id="session">
     <section>
         <div class="contentContainer">
-            <table class="type22" id="movie">
+            <table class="table table--block--academy">
+                <thead>
+                <tr>
+                    <th style="width:10%">포스터</th>
+                    <th>영화명</th>
+                    <th>장르</th>
+                    <th>IMDB 점수</th>
+                    <th>개봉일</th>
+                    <th>상영시간</th>
+                    <th>감독</th>
+                    <th>주연</th>
+                    <c:if test="${ses != null}">
+                    <th>나중에 볼 영화</th>
+                    </c:if>
+                </tr>
+                </thead>
+                <tbody id="movie">
 
+                </tbody>
             </table>
         </div>
     </section>

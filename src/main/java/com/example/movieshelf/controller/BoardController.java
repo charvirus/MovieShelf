@@ -50,7 +50,7 @@ public class BoardController {
         ArrayList<Comment> comments = this.sortForSortNo(cc.getCommentListByTalkNo(talk_no));
         request.setAttribute("post", post);
         request.setAttribute("comments", comments);
-        return "board/boardView.jsp";
+        return "board/boardView_comment.jsp"; ///////////////////////
     }
 
     @GetMapping("/boardWriteForm")

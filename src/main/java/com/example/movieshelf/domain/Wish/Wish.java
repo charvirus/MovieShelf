@@ -32,9 +32,6 @@ public class Wish {
         this.movie_name = wishRequestDTO.getMovie_name();
         this.comment = wishRequestDTO.getComment();
         this.add_date = wishRequestDTO.getAdd_date();
-//        이미지 태그
-//        스트링 코멘트
-
     }
 
     public void update(WishRequestDTO wishRequestDTO) {

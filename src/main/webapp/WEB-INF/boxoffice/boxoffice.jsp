@@ -11,18 +11,30 @@
         </div>
     </div>
 </header>
-    <main>
-        <section>
-            <div class="small text-muted">MovieShelf</div>
-            <h2>박스오피스 TOP 10</h2>
-            <hr>
-            <div class="contentContainer">
-            <table class="type22" id="boxOffice" >
+<main>
+    <section>
+        <div class="small text-muted">MovieShelf</div>
+        <h2>박스오피스 TOP 10</h2>
+        <hr>
+        <div class="contentContainer">
+            <table class="table table--block--boxoffice">
+                <thead>
+                <tr>
+                    <th>순위</th>
+                    <th>포스터</th>
+                    <th>제목</th>
+                    <th>개봉일</th>
+                    <th>일일 관객수</th>
+                    <th>누적관객수</th>
+                </tr>
+                </thead>
+                <tbody id="boxOffice">
 
+                </tbody>
             </table>
-            </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 <script type="text/javascript" src="script/boxOffice/boxOffice.js"></script>
 <c:import url="../footer_.jsp"></c:import>
 

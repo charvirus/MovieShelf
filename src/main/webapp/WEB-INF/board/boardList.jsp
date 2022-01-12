@@ -20,10 +20,10 @@
             <div class="small text-muted">MovieShelf</div>
             <h2>영화 게시판</h2>
             <hr>
-            <table class="type22">
+            <table class="table table--block--boardList" cellspacing="0" cellpadding="0">
                 <thead>
                 <tr>
-                    <th>포스터</th>
+                    <th style="width:10%">포스터</th>
                     <th>영화명</th>
                     <th>제목</th>
                     <th>작성자</th>
@@ -34,7 +34,7 @@
                 <tbody>
                 <c:forEach var="post" items="${boardList}">
                     <tr onclick="location.href='/board/${post.talk_no}'">
-                        <th class="imgTag"><img src="${post.movie_poster}"/></th>
+                        <td><img src="${post.movie_poster}"/></td>
                         <td><c:out value="${post.movie_name}"/></td>
                         <td><c:out value="${post.talk_title}"/></td>
                         <td><c:out value="${post.user_id}"/></td>
