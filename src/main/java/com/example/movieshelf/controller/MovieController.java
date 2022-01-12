@@ -70,15 +70,12 @@ public class MovieController {
     public void addWishList(@PathVariable String name, HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession(false);
         User user = (User) session.getAttribute("log");
-        System.out.println(1);
         if (user == null) {
             session.setAttribute("logPlz", 1);
             response.sendRedirect("/login");
         } else {
-            System.out.println(2);
             Movie getMovie = movieService.getMovieByName(name);
             String movieName = name;
-            System.out.println(3);
 
             if (getMovie != null){
                 movieName = getMovie.getMovie_name();
@@ -86,10 +83,12 @@ public class MovieController {
             System.out.println(user.getUser_id());
             System.out.println(movieName);
             if (checkWishList(user.getUser_id(),movieName)) {
-                System.out.println(4);
                 Timestamp timestamp = new Timestamp(System.currentTimeMillis());
                 WishRequestDTO dto = new WishRequestDTO(user.getUser_id(), movieName,timestamp);
                 wishService.addWish(dto);
+                List<Wish> wishCountlist = wc.getWishes(user.getUser_id());
+                int wishCount = wishCountlist.size();
+                session.setAttribute("wishCount",wishCount);
             }
             response.sendRedirect("/search");
         }
