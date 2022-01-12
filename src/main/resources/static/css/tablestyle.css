@@ -252,16 +252,32 @@ table.type22 td {
     .text-white{
         font-size: 10pt;
     }
+
+    #movieMain{
+        display: none;
+    }
+
+    #movieMain img{
+        display: none;
+    }
 }
 
+#movieMain{
+    display: flex;
+}
 
+#movieMain img{
+    width: 150px;
+    height: 200px;
+    margin-left: 10px;
+}
 
 .addWish{
     border-bottom: none;
 }
 
 #contentArea{
-    margin: 50px;
+    margin: 100px;
     width: 100%;
 }
 
@@ -276,47 +292,6 @@ textarea {
     resize: both;
 }
 
-/*@media (max-width: 575px) {*/
-/*    #academyRadio{*/
-/*        align-items: center;*/
-/*        justify-content: center;*/
-/*    }*/
 
-/*    .contentContainer{*/
-/*        font-size: 10px;*/
-/*    }*/
-/*    table.type22 {*/
-/*    }*/
-
-/*    table.type22 thead th {*/
-/*        display: none;*/
-/*    }*/
-
-/*    table.type22 tbody th {*/
-/*        !*display: flex;*!*/
-/*        !*flex-direction: column;*!*/
-
-/*        width: 100px;*/
-/*        padding: 5px;*/
-/*        background: #f3f6f7;*/
-/*    }*/
-
-
-/*    table.type22 td {*/
-/*        display: flex;*/
-/*        flex-direction: column;*/
-/*        !*flex-basis: 80%;*!*/
-/*        padding: 5px;*/
-/*    }*/
-
-
-/*    table.type22 img{*/
-/*        width: 115px;*/
-/*    }*/
-/*    table.type22.imgTag{*/
-/*        background-color: white;*/
-/*    }*/
-
-/*}*/
 
 
