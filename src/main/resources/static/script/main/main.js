@@ -22,7 +22,7 @@ function getMovies(movies) {
             const movie_poster = e.movie_poster;
             $("#movieMain").append(
                 `
-               <span><img src="${movie_poster}"/></span>
+               <span><img class="mainImg" src="${movie_poster}"/></span>
                  `
             )
         }

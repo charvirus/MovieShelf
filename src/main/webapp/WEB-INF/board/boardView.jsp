@@ -8,13 +8,10 @@
 <h2>게시글</h2>
 <hr>
 
+<img src="${post.movie_poster}"/>
+
 <table class="table table--block--boardView">
     <thead>
-    <tr>
-        <th style="width:10%">
-            <img src="${post.movie_poster}"/>
-        </th>
-    </tr>
     <tr>
         <th>영화명</th>
         <th>제목</th>

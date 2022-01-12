@@ -39,24 +39,19 @@
             </form>
 
             <hr>
-
+            <c:choose>
+                <c:when test="${moviePoster != ''}">
+                    <img src="${moviePoster}"/>                                </c:when>
+                <c:otherwise>
+                    -
+                </c:otherwise>
+            </c:choose>
             <form id="write" method="post" action="/boardWrite">
                 <table class="table table--block--boardWrite">
                     <input name="moviePoster" type="hidden" value="${moviePoster}"/>
                     <input name="movieName" type="hidden" value="${movieName}"/>
 
-                    <tr>
-                        <th style="width:10%">
-                            <c:choose>
-                                <c:when test="${moviePoster != ''}">
-                                    <img src="${moviePoster}"/>                                </c:when>
-                                <c:otherwise>
-                                    -
-                                </c:otherwise>
-                            </c:choose>
-
-                        </th>
-                    </tr>
+                    <thead>
                     <tr>
                         <th>영화명</th>
                         <th>제목</th>

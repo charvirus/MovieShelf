@@ -257,7 +257,7 @@ table.type22 td {
         display: none;
     }
 
-    #movieMain img{
+    .mainImg{
         display: none;
     }
 }
@@ -266,7 +266,7 @@ table.type22 td {
     display: flex;
 }
 
-#movieMain img{
+.mainImg{
     width: 150px;
     height: 200px;
     margin-left: 10px;
