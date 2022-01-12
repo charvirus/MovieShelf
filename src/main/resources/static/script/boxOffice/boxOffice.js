@@ -71,12 +71,10 @@ function getFullData(){
             data.items.forEach(e=>{
                 let nvrtitle = e.title;
                 const nvrProductionYear = e.pubDate;
-                let nvrDirector = e.director;
 
                 // 영화제목 정규식
                 nvrtitle = nvrtitle.replace("<b>", "");
                 nvrtitle = nvrtitle.replace("</b>", "");
-                nvrDirector = nvrDirector.replaceAll("|","");
 
                 // 일치하면 집어넣기
                 if(movieTitle === nvrtitle && productionYear === nvrProductionYear){
