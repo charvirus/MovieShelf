@@ -42,6 +42,11 @@ public class WishController {
         return sendWishes;
     }
 
+    @PutMapping
+    public Wish updateWish(int wish_no, WishRequestDTO wishRequestDTO){
+        return service.updateWish(wish_no, wishRequestDTO);
+    }
+
     @DeleteMapping("/wish/delete/{wish_no}")
     public int deleteWish(@PathVariable int wish_no)
     {

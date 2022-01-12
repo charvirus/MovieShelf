@@ -66,4 +66,3 @@
     </section>
 </main>
 <c:import url="../footer_.jsp"></c:import>
-

@@ -31,6 +31,7 @@ public class MypageController {
     private final TalkController tc;
     private final WishController wc;
     private final MovieRestController mrc;
+    private final MovieController mc;
     private final UserService us;
 
     @GetMapping("/mypage")
@@ -152,19 +153,37 @@ public class MypageController {
         response.sendRedirect("/main/mypage/3");
     }
 
-    @GetMapping("/CommentWrite/{movie_no}")
-    public String writeForm(@PathVariable int movie_no, HttpServletRequest request) {
+    @GetMapping("/CommentWrite/{wish_no}/{movie_no}")
+    public String writeForm(@PathVariable int movie_no, @PathVariable int wish_no, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
+        Movie movie = mrc.getMovie(movie_no);
+        Wish wish = wc.getWish(wish_no);
 
-        // 영화 리스트
-        ArrayList<Movie> movieArr = mrc.getMovieNoList(movie_no);
-        request.setAttribute("mra", movieArr);
+        request.setAttribute("movie", movie);
+        request.setAttribute("wn", wish_no);
+        request.setAttribute("wish", wish);
 
+//        if(wish.getComment() != null){
+//            return "/mypage/mypage_commentView.jsp";
+//        }
       return "/mypage/mypage_comment.jsp";
     }
 
+    @GetMapping("/commentUpdate/{wish_no}")
+    public void uu(@PathVariable int wish_no, HttpServletRequest request,HttpServletResponse response)throws IOException{
 
+        // 번호로 해당 객최 조회
+        Wish wish = wc.getWish(wish_no);
+        String comment = request.getParameter("comment");
+        // dto로 변환
+        WishRequestDTO dto = new WishRequestDTO(wish.getWish_no(), wish.getUser_id(), wish.getMovie_no(), wish.getMovie_name(), comment, wish.getAdd_date());
+        // 해당객체를업데이트
+        wc.updateWish(wish_no, dto);
+        // 이전 페이지로 이동
+       response.sendRedirect("/main/mypage/3");
 
     }
+
+
 
 }

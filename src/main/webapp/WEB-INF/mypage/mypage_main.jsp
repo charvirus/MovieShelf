@@ -98,10 +98,12 @@
                                     <td><c:out value="${wish.movie_no}"/></td>
                                     <td onclick="location.href='#'"><c:out value="${wish.movie_name}"/></td>
                                     <td><c:out value="${wish.add_date}"/> </td>
-                                    <td><button  class="btn btn-primary" onclick="location.href='/CommentWrite/${wish.movie_no}'">코멘트적기</button></td>
                                     <c:choose>
+                                        <c:when test="${wish.comment == null}">
+                                            <td><button  class="btn btn-primary" onclick="location.href='/CommentWrite/${wish.wish_no}/${wish.movie_no}'">코멘트적기</button></td>
+                                        </c:when>
                                         <c:when test="${wish.comment != null}">
-                                            <td><button  class="btn btn-primary" onclick="location.href='#'">수정</button></td>
+                                            <td><button  class="btn btn-primary" onclick="location.href='/CommentWrite/${wish.wish_no}/${wish.movie_no}'">확인/수정</button></td>
                                         </c:when>
                                     </c:choose>
                                     <td><button  class="btn btn-primary" onclick="location.href='/mypage/wishList/deleteWish/${wish.wish_no}'">삭제</button></td>
