@@ -3,6 +3,15 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
 <c:import url="../header_.jsp"></c:import>
+<!-- Page header with logo and tagline-->
+<header class="py-5 bg-light border-bottom mb-4">
+    <div class="container">
+        <div class="text-center my-5">
+            <h1 class="fw-bolder">나만의 영화 선반</h1>
+            <p class="lead mb-0">Movie Shelf</p>
+        </div>
+    </div>
+</header>
 <main>
     <c:set var="log" value="${sessionScope.log}"/>
     <c:set var="select" value="${requestScope.select}" scope="page"/>
@@ -12,13 +21,15 @@
 
     <c:choose>
         <c:when test="${log != null}">
+    <div class="small text-muted">MovieShelf</div>
     <h2>나의 마이페이지 목록</h2>
-    <button onclick="location.href='/main/mypage/update'">개인정보수정</button>
-    <button onclick="location.href='/main/mypage/1'">게시글</button>
-    <button onclick="location.href='/main/mypage/2'">댓글</button>
-    <button onclick="location.href='/main/mypage/3'">위시리스트</button>
+    <table>
+    <button class="btn btn-primary" onclick="location.href='/main/mypage/update'">개인정보수정</button>
+    <button class="btn btn-primary" onclick="location.href='/main/mypage/1'">게시글</button>
+    <button class="btn btn-primary" onclick="location.href='/main/mypage/2'">댓글</button>
+    <button class="btn btn-primary" onclick="location.href='/main/mypage/3'">위시리스트</button>
+    </table><br>
             <section>
-                <div class="small text-muted">MovieShelf</div>
                 <h2>개인정보 수정</h2>
                 <form onSubmit="return false;">
                     <input type="hidden" name="uNo" value="${log.user_no}">
@@ -32,7 +43,7 @@
                         <p id="pNickname"></p>
                         <li>가입일자 : <c:out value="${log.user_regdate}"/></li>
                     </ul>
-                    <input type="submit" value="수정" onclick = "checkUpdate(form)">
+                    <input class="btn btn-primary" type="submit" value="수정" onclick = "checkUpdate(form)">
                 </form>
 
         </c:when>

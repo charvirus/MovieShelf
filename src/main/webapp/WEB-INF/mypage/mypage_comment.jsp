@@ -56,11 +56,11 @@
                     </table>
                     <c:choose>
                         <c:when test="${wish.comment == null}">
-                            <input type="submit" value="코멘트 작성하기">
+                            <input class="btn btn-primary" type="submit" value="코멘트 작성하기">
                         </c:when>
                         <c:when test="${wish.comment != null}">
-                            <input type="submit" value="코멘트 수정하기">
-                            <input type="button" onclick="location.href='/main/mypage/3'" value="닫기">
+                            <input class="btn btn-primary" type="submit" value="코멘트 수정하기">
+                            <input class="btn btn-primary" type="button" onclick="location.href='/main/mypage/3'" value="뒤로가기">
                         </c:when>
                     </c:choose>
                 </form>

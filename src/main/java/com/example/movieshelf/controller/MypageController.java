@@ -163,9 +163,6 @@ public class MypageController {
         request.setAttribute("wn", wish_no);
         request.setAttribute("wish", wish);
 
-//        if(wish.getComment() != null){
-//            return "/mypage/mypage_commentView.jsp";
-//        }
       return "/mypage/mypage_comment.jsp";
     }
 
