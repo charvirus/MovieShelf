@@ -36,6 +36,8 @@ function printResult(movies) {
         movieTitleReplaced = movieTitleReplaced.replace("</b>","");
         const moviePubDate = e.pubDate;
         const movieDirector = e.director;
+        let movieDirectorReplaced = movieDirector;
+        movieDirectorReplaced = movieDirectorReplaced.replace("|","");
         const movieUserRating = e.userRating;
         const moviePoster = e.image;
         const movieLink = e.link;
@@ -45,7 +47,7 @@ function printResult(movies) {
                     <td><img class="image" src="${moviePoster}"/></td>
                     <td><a href="${movieLink}">${movieTitle}</a></td>
                     <td>${moviePubDate}</td>
-                    <td>${movieDirector}</td>
+                    <td>${movieDirectorReplaced}</td>
                     <td>${movieUserRating}</td>
                      <td>
                             <button onClick="location.href='/addWishFromSearch/${movieTitleReplaced}'">
@@ -63,7 +65,7 @@ function printResult(movies) {
                     <td><img class="image" src="${moviePoster}"/></td>
                     <td><a href="${movieLink}">${movieTitle}</a></td>
                     <td>${moviePubDate}</td>
-                    <td>${movieDirector}</td>
+                    <td>${movieDirectorReplaced}</td>
                     <td>${movieUserRating}</td>
                 </tr>
             </tbody>
