@@ -23,19 +23,19 @@
             <div class="small text-muted">MovieShelf</div>
             <h2>나의 마이페이지 목록</h2>
             <table>
-            <button class="btn btn-primary" onclick="location.href='/main/mypage/update'">개인정보수정</button>
-            <button class="btn btn-primary" onclick="location.href='/main/mypage/1'">게시글</button>
-            <button class="btn btn-primary" onclick="location.href='/main/mypage/2'">댓글</button>
-            <button class="btn btn-primary" onclick="location.href='/main/mypage/3'">위시리스트</button>
-            </table><br>
+                <button class="btn btn-primary" onclick="location.href='/main/mypage/update'">개인정보수정</button>
+                <button class="btn btn-primary" onclick="location.href='/main/mypage/1'">게시글</button>
+                <button class="btn btn-primary" onclick="location.href='/main/mypage/2'">댓글</button>
+                <button class="btn btn-primary" onclick="location.href='/main/mypage/3'">위시리스트</button>
+            </table>
+            <br>
             <section>
-
 
                 <c:choose>
                     <c:when test="${select == 1}">
-                        <h4>나의 게시글 수 : <c:out value="${ta.size()}"/> </h4>
+                        <h4>나의 게시글 수 : <c:out value="${ta.size()}"/></h4>
                         <h4>게시글 목록</h4>
-                        <table class="type22">
+                        <table class="table table--block--mypage1">
                             <thead>
                             <tr>
                                 <th>번호</th>
@@ -53,18 +53,22 @@
                                             value="${post.talk_title}"/></td>
                                     <td><c:out value="${post.talk_likes}"/></td>
                                     <td><c:out value="${post.talk_regdate}"/></td>
-                                    <td><button class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/mypage/boardDelete/${post.talk_no}'">
-                                        삭제
-                                </button></td>
+                                    <td>
+                                        <button class="btn btn-primary"
+                                                onclick="location.href='${pageContext.request.contextPath}/mypage/boardDelete/${post.talk_no}'">
+                                            삭제
+                                        </button>
+                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
-                        </table><br>
+                        </table>
+                        <br>
                     </c:when>
                     <c:when test="${select == 2}">
-                        <h4>나의 댓글 수 : <c:out value="${ca.size()}"/> </h4>
+                        <h4>나의 댓글 수 : <c:out value="${ca.size()}"/></h4>
                         <h4>댓글 목록</h4>
-                        <table class="type22">
+                        <table class="table table--block--mypage2">
                             <thead>
                             <tr>
                                 <th>번호</th>
@@ -78,21 +82,26 @@
                             <c:forEach var="comment" items="${ca}">
                                 <tr>
                                     <td><c:out value="${comment.talk_no}"/></td>
-                                    <td onclick="location.href='/board/${comment.talk_no}'"><c:out value="${comment.comment_content}"/></td>
+                                    <td onclick="location.href='/board/${comment.talk_no}'"><c:out
+                                            value="${comment.comment_content}"/></td>
                                     <td><c:out value="${comment.depth}"/></td>
-                                    <td><c:out value="${comment.comment_date}"/> </td>
-                                    <td><button class="btn btn-primary" onclick="location.href='/mypage/comment/deleteComment/${comment.comment_id}'">
-                                        삭제
-                                    </button></td>
+                                    <td><c:out value="${comment.comment_date}"/></td>
+                                    <td>
+                                        <button class="btn btn-primary"
+                                                onclick="location.href='/mypage/comment/deleteComment/${comment.comment_id}'">
+                                            삭제
+                                        </button>
+                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
-                        </table><br>
+                        </table>
+                        <br>
                     </c:when>
                     <c:when test="${select == 3}">
-                        <h4>나의 볼영화 수 : <c:out value="${wa.size()}"/> </h4>
+                        <h4>나의 볼영화 수 : <c:out value="${wa.size()}"/></h4>
                         <h4>찜 목록</h4>
-                        <table class="type22">
+                        <table class="table table--block--mypage3">
                             <thead>
                             <tr>
                                 <th>번호</th>
@@ -110,22 +119,37 @@
                                     <td><c:out value="${wish.wish_no}"/></td>
                                     <td><c:out value="${wish.movie_no}"/></td>
                                     <td onclick="location.href='#'"><c:out value="${wish.movie_name}"/></td>
-                                    <td><c:out value="${wish.add_date}"/> </td>
+                                    <td><c:out value="${wish.add_date}"/></td>
                                     <c:choose>
                                         <c:when test="${wish.comment == null}">
-                                            <td><button  class="btn btn-primary" onclick="location.href='/CommentWrite/${wish.wish_no}/${wish.movie_no}'">코멘트적기</button></td>
+                                            <td>
+                                                <button class="btn btn-primary"
+                                                        onclick="location.href='/CommentWrite/${wish.wish_no}/${wish.movie_no}'">
+                                                    코멘트적기
+                                                </button>
+                                            </td>
                                             <td></td>
                                         </c:when>
                                         <c:when test="${wish.comment != null}">
-                                           <td><c:out value="${wish.comment}"/> </td>
-                                            <td><button  class="btn btn-primary" onclick="location.href='/CommentWrite/${wish.wish_no}/${wish.movie_no}'">수정</button></td>
+                                            <td><c:out value="${wish.comment}"/></td>
+                                            <td>
+                                                <button class="btn btn-primary"
+                                                        onclick="location.href='/CommentWrite/${wish.wish_no}/${wish.movie_no}'">
+                                                    수정
+                                                </button>
+                                            </td>
                                         </c:when>
                                     </c:choose>
-                                    <td><button  class="btn btn-primary" onclick="location.href='/mypage/wishList/deleteWish/${wish.wish_no}'">삭제</button></td>
+                                    <td>
+                                        <button class="btn btn-primary"
+                                                onclick="location.href='/mypage/wishList/deleteWish/${wish.wish_no}'">삭제
+                                        </button>
+                                    </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
-                        </table><br>
+                        </table>
+                        <br>
                     </c:when>
                 </c:choose>
             </section>

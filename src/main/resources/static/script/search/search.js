@@ -24,11 +24,31 @@ function getSearchResult() {
     }
 }
 
+
 function printResult(movies) {
     console.log(movies.length);
+    $("#searchArea").empty();
+
+    $('#searchArea').append(
+        `
+            <thead>
+                <tr>
+                    <th style="width:10%">포스터</th>
+                    <th>영화제목</th>
+                    <th>제작일</th>
+                    <th>감독</th>
+                    <th>평점</th>
+                    <th>찜하기</th>
+                </tr>
+            </thead>
+            <tbody id="searchResult">
+
+            </tbody>
+        `
+    );
+
     $("#searchResult").empty();
     movies.forEach(e => {
-
         const movieTitle = e.title;
         let movieTitleReplaced = movieTitle;
         // 정규식
@@ -42,7 +62,8 @@ function printResult(movies) {
         const moviePoster = e.image;
         const movieLink = e.link;
         if (session != "") {
-            $("#searchResult").append(`<tbody>
+            $("#searchResult").append(
+                `
                 <tr>
                     <td><img class="image" src="${moviePoster}"/></td>
                     <td><a href="${movieLink}">${movieTitle}</a></td>
@@ -50,17 +71,16 @@ function printResult(movies) {
                     <td>${movieDirectorReplaced}</td>
                     <td>${movieUserRating}</td>
                      <td>
-                            <button onClick="location.href='/addWishFromSearch/${movieTitleReplaced}'">
-                                나중에 볼 영화 찜하기
+                            <button class="btn btn-primary" onClick="location.href='/addWishFromSearch/${movieTitleReplaced}'">
+                                +
                             </button>
                         
                     </td>
                 </tr>
-            </tbody>
         `)
         } else {
             $("#searchResult").append(
-                `<tbody>
+                `
                 <tr>
                     <td><img class="image" src="${moviePoster}"/></td>
                     <td><a href="${movieLink}">${movieTitle}</a></td>
@@ -68,8 +88,7 @@ function printResult(movies) {
                     <td>${movieDirectorReplaced}</td>
                     <td>${movieUserRating}</td>
                 </tr>
-            </tbody>
-        `
+                `
             );
         }
     });

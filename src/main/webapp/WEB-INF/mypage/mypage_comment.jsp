@@ -24,14 +24,21 @@
                 <div class="small text-muted">MovieShelf</div>
                 <h2>그때생각 작성</h2>
                 <hr>
-                    <table class="type22">
+                    <table class="table table--block--thinkComment">
                         <tr>
                             <th>포스터</th>
                             <th>영화명</th>
                             <th>감독</th>
                         </tr>
                         </thead>
-                            <td><img src="${movie.movie_poster}"></td>
+                        <c:choose>
+                            <c:when test="${movie.movie_poster != null}">
+                                <td><img src="${movie.movie_poster}"></td>
+                            </c:when>
+                            <c:otherwise>
+                                [포스터 없음]
+                            </c:otherwise>
+                        </c:choose>
                             <td><c:out value="${movie.movie_name}"/></td>
                             <td><c:out value="${movie.movie_director}"/> </td>
                         </tbody>
@@ -43,13 +50,12 @@
                             <td height="500px" colspan="4">
                                 <c:choose>
                                     <c:when test="${wish.comment == null}">
-                                        <input type="text" name="comment" id="comment" style="width:450px;height:500px;font-size:30px;" required/>
+                                        <input type="text" name="comment" id="comment" style="width:450px;height:500px;font-size:12pt;" required/>
                                     </c:when>
                                     <c:when test="${wish.comment != null}">
-                                        <input type="text" name="comment" id="comment" style="width:450px;height:500px;font-size:30px;" value="${wish.comment}" required/>
+                                        <input type="text" name="comment" id="comment" style="width:450px;height:500px;font-size:12pt;" value="${wish.comment}" required/>
                                     </c:when>
                                 </c:choose>
-
                             </td>
                         </tr>
 
