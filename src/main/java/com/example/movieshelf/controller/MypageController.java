@@ -156,7 +156,12 @@ public class MypageController {
     @GetMapping("/CommentWrite/{wish_no}/{movie_no}")
     public String writeForm(@PathVariable int movie_no, @PathVariable int wish_no, HttpServletRequest request) {
         HttpSession session = request.getSession(false);
-        Movie movie = mrc.getMovie(movie_no);
+        Movie movie = null;
+        if(movie_no != 0) {
+            movie = mrc.getMovie(movie_no);
+        }else{
+
+        }
         Wish wish = wc.getWish(wish_no);
 
         request.setAttribute("movie", movie);

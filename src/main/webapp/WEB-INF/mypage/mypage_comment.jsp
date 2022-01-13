@@ -18,31 +18,38 @@
     <c:set var="movie" value="${requestScope.movie}" scope="page"/>
     <c:set var="wn" value="${requestScope.wn}" scope="page"/>
     <c:set var="wish" value="${requestScope.wish}" scope="page"/>
-    <section>
         <section class="WishComentSec">
             <article class="arti1">
                 <div class="small text-muted">MovieShelf</div>
                 <h2>그때생각 작성</h2>
                 <hr>
-                    <table class="table table--block--thinkComment">
-                        <tr>
-                            <th>포스터</th>
-                            <th>영화명</th>
-                            <th>감독</th>
-                        </tr>
-                        </thead>
-                        <c:choose>
-                            <c:when test="${movie.movie_poster != null}">
-                                <td><img src="${movie.movie_poster}"></td>
-                            </c:when>
-                            <c:otherwise>
-                                [포스터 없음]
-                            </c:otherwise>
-                        </c:choose>
+                <table class="table table--block--thinkComment">
+                    <tr>
+                        <th>포스터</th>
+                        <th>영화명</th>
+                        <th>감독</th>
+                    </tr>
+                    </thead>
+                    <c:choose>
+                        <c:when test="${movie.movie_poster != null || movie == null}">
+                            <td><img src="${movie.movie_poster}"></td>
+                        </c:when>
+                        <c:otherwise>
+                            [포스터 없음]
+                        </c:otherwise>
+                    </c:choose>
+                    <c:choose>
+                        <c:when test="${movie == null}">
                             <td><c:out value="${movie.movie_name}"/></td>
-                            <td><c:out value="${movie.movie_director}"/> </td>
-                        </tbody>
-                    </table>
+                            <td><c:out value="${movie.movie_director}"/></td>
+                        </c:when>
+                        <c:otherwise>
+                            <td></td>
+                            <td></td>
+                        </c:otherwise>
+                    </c:choose>
+                    </tbody>
+                </table>
                 <hr>
                 <form action="/commentUpdate/${wn}">
                     <table class="type22">
@@ -50,10 +57,13 @@
                             <td height="500px" colspan="4">
                                 <c:choose>
                                     <c:when test="${wish.comment == null}">
-                                        <input type="text" name="comment" id="comment" style="width:450px;height:500px;font-size:12pt;" required/>
+                                        <input type="text" name="comment" id="comment"
+                                               style="width:450px;height:500px;font-size:12pt;" required/>
                                     </c:when>
                                     <c:when test="${wish.comment != null}">
-                                        <input type="text" name="comment" id="comment" style="width:450px;height:500px;font-size:12pt;" value="${wish.comment}" required/>
+                                        <input type="text" name="comment" id="comment"
+                                               style="width:450px;height:500px;font-size:12pt;" value="${wish.comment}"
+                                               required/>
                                     </c:when>
                                 </c:choose>
                             </td>
@@ -66,7 +76,8 @@
                         </c:when>
                         <c:when test="${wish.comment != null}">
                             <input class="btn btn-primary" type="submit" value="코멘트 수정하기">
-                            <input class="btn btn-primary" type="button" onclick="location.href='/main/mypage/3'" value="뒤로가기">
+                            <input class="btn btn-primary" type="button" onclick="location.href='/main/mypage/3'"
+                                   value="뒤로가기">
                         </c:when>
                     </c:choose>
                 </form>
