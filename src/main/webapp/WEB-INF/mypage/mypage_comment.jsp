@@ -34,6 +34,9 @@
                         <c:when test="${movie.movie_poster != null}">
                             <td><img src="${movie.movie_poster}"></td>
                         </c:when>
+                        <c:when test="${movie == null}">
+                            <td>검색 ➝ 찜하기는 <br>포스터가 제공되지 않습니다</td>
+                        </c:when>
                         <c:otherwise>
                             <td>[포스터 없음]</td>
                         </c:otherwise>
@@ -44,8 +47,8 @@
                             <td><c:out value="${movie.movie_director}"/></td>
                         </c:when>
                         <c:otherwise>
-                            <td></td>
-                            <td></td>
+                            <td><c:out value="${wish.movie_name}"/> </td>
+                            <td>-</td>
                         </c:otherwise>
                     </c:choose>
                     </tbody>

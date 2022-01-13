@@ -31,8 +31,6 @@ public class MypageController {
     private final TalkController tc;
     private final WishController wc;
     private final MovieRestController mrc;
-    private final MovieController mc;
-    private final UserService us;
 
     @GetMapping("/mypage")
     public String getMypageCheck(HttpServletRequest request){
@@ -155,11 +153,11 @@ public class MypageController {
 
     @GetMapping("/CommentWrite/{wish_no}/{movie_no}")
     public String writeForm(@PathVariable int movie_no, @PathVariable int wish_no, HttpServletRequest request) {
-        HttpSession session = request.getSession(false);
         Movie movie = null;
         if(movie_no != 0) {
             movie = mrc.getMovie(movie_no);
         }
+
         Wish wish = wc.getWish(wish_no);
 
         request.setAttribute("movie", movie);
