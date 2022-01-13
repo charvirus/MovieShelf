@@ -159,8 +159,6 @@ public class MypageController {
         Movie movie = null;
         if(movie_no != 0) {
             movie = mrc.getMovie(movie_no);
-        }else{
-
         }
         Wish wish = wc.getWish(wish_no);
 

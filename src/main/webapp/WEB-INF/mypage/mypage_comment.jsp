@@ -31,15 +31,15 @@
                     </tr>
                     </thead>
                     <c:choose>
-                        <c:when test="${movie.movie_poster != null || movie == null}">
+                        <c:when test="${movie.movie_poster != null}">
                             <td><img src="${movie.movie_poster}"></td>
                         </c:when>
                         <c:otherwise>
-                            [포스터 없음]
+                            <td>[포스터 없음]</td>
                         </c:otherwise>
                     </c:choose>
                     <c:choose>
-                        <c:when test="${movie == null}">
+                        <c:when test="${not empty movie}">
                             <td><c:out value="${movie.movie_name}"/></td>
                             <td><c:out value="${movie.movie_director}"/></td>
                         </c:when>
